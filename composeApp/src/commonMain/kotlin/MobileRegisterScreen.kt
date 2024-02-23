@@ -13,12 +13,11 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import dev.icerock.moko.mvvm.compose.getViewModel
-import dev.icerock.moko.mvvm.compose.viewModelFactory
+import org.koin.compose.koinInject
 
 @Composable
 fun MobileRegisterScreen() {
-    val mobileRegisterScreenViewModel = getViewModel(Unit, viewModelFactory { MobileRegisterScreenViewModel() })
+    val mobileRegisterScreenViewModel: MobileRegisterScreenViewModel = koinInject()
     val uiState by mobileRegisterScreenViewModel.uiState.collectAsState() //HERE USE THE ONE WITH LIFECYCLE IF POSSIBLE
     var email by remember { mutableStateOf("") }
 

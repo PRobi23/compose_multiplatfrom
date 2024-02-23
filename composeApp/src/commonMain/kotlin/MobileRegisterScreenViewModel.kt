@@ -4,13 +4,10 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 
 
-class MobileRegisterScreenViewModel : ViewModel() {
+class MobileRegisterScreenViewModel(private val emailValidatorUseCase: EmailValidatorUseCase) : ViewModel() {
 
     private val _uiState = MutableStateFlow(MobileRegisterScreenUiState())
     val uiState = _uiState.asStateFlow()
-
-    //TODO: USE Koin here
-    private val emailValidatorUseCase = EmailValidatorUseCase()
 
     fun validateEmail(email: String) {
         val isEmailValid = emailValidatorUseCase(email)
