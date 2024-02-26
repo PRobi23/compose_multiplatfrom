@@ -14,6 +14,8 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import cafe.adriel.voyager.core.screen.Screen
+import cafe.adriel.voyager.navigator.LocalNavigator
+import cafe.adriel.voyager.navigator.currentOrThrow
 import org.koin.compose.koinInject
 
 class MobileRegisterScreen : Screen {
@@ -22,6 +24,7 @@ class MobileRegisterScreen : Screen {
         val mobileRegisterScreenViewModel: MobileRegisterScreenViewModel = koinInject()
         val uiState by mobileRegisterScreenViewModel.uiState.collectAsState() //HERE USE THE ONE WITH LIFECYCLE IF POSSIBLE
         var email by remember { mutableStateOf("") }
+        val navigator = LocalNavigator.currentOrThrow
 
         MaterialTheme {
             Column(
@@ -63,7 +66,12 @@ class MobileRegisterScreen : Screen {
                 }
 
                 Button(
-                    onClick = { mobileRegisterScreenViewModel.validateEmail(email) },
+                    onClick = {
+                        val isEmailValid = mobileRegisterScreenViewModel.validateEmail(email)
+                        if (isEmailValid) {
+                            navigator.push(MobilePasswordScreen())
+                        }
+                    },
                 ) {
                     Text(text = "Next")
                 }
