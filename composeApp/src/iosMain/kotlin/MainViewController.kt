@@ -9,5 +9,5 @@ fun MainViewController() = ComposeUIViewController {
     } else {
         TvRegisterScreen()
     }
-    
 }
+

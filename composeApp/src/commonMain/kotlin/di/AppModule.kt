@@ -5,7 +5,7 @@ import MobileRegisterScreenViewModel
 import org.koin.dsl.module
 
 
-fun appModule() = module {
+val appModule = module {
     factory { EmailValidatorUseCase() }
 
     viewModelDefinition { MobileRegisterScreenViewModel(get()) }

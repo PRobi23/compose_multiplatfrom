@@ -7,5 +7,4 @@ class MobilePasswordScreen : Screen {
     override fun Content() {
         TODO("Not yet implemented")
     }
-
 }

@@ -10,6 +10,6 @@ actual fun getPlatform(): Platform = IOSPlatform()
 
 fun initKoin() {
     startKoin {
-        modules(appModule())
+        modules(appModule)
     }
 }
