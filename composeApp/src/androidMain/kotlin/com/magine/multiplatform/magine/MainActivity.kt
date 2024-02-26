@@ -7,6 +7,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
+import cafe.adriel.voyager.navigator.Navigator
 import com.magine.multiplatform.isTv
 
 class MainActivity : ComponentActivity() {
@@ -14,11 +15,13 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
 
         setContent {
-            if (baseContext.isTv()) {
+            val screen = if (baseContext.isTv()) {
                 TvRegisterScreen()
             } else {
                 MobileRegisterScreen()
             }
+    
+            Navigator(screen)
         }
     }
 }

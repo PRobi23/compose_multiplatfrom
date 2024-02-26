@@ -56,6 +56,7 @@ kotlin {
 
             implementation(libs.koin.core)
             implementation(libs.koin.compose)
+            implementation(libs.navigation)
         }
         desktopMain.dependencies {
             implementation(compose.desktop.currentOs)
@@ -64,6 +65,10 @@ kotlin {
         }
         iosMain.dependencies {
             implementation(libs.ktor.client.darwin)
+        }
+        commonTest.dependencies {
+            implementation(libs.kotlin.test)
+            implementation(libs.junit)
         }
     }
 }
