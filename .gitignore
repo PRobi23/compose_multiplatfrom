@@ -50,5 +50,6 @@ prebuilds/fullsdk-darwin
 /captures
 .externalNativeBuild
 .cxx
-/iosApp/iosApp.xcodeproj/
-./fleet
+iosApp/iosApp.xcodeproj/
+iosApp/.idea
+fleet
