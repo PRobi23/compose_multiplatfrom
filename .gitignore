@@ -45,7 +45,8 @@ bin/
 prebuilds/fullsdk-linux
 prebuilds/fullsdk-darwin
 /local.properties
-.idea/
+.idea/workspace.xml
+.idea
 /captures
 .externalNativeBuild
 .cxx
