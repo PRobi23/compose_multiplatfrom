@@ -45,9 +45,11 @@ bin/
 prebuilds/fullsdk-linux
 prebuilds/fullsdk-darwin
 /local.properties
-.idea/
+.idea/workspace.xml
+.idea
 /captures
 .externalNativeBuild
 .cxx
-/iosApp/iosApp.xcodeproj/
-./fleet
+iosApp/iosApp.xcodeproj/
+iosApp/.idea
+fleet
