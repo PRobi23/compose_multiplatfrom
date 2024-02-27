@@ -40,3 +40,14 @@ bin/
 
 ### Mac OS ###
 .DS_Store
+
+
+### added missing ones from: https://github.com/JetBrains/compose-multiplatform/blob/master/.gitignore ###
+prebuilds/fullsdk-linux
+prebuilds/fullsdk-darwin
+/local.properties
+.idea/
+/captures
+.externalNativeBuild
+.cxx
+/iosApp/iosApp.xcodeproj/
