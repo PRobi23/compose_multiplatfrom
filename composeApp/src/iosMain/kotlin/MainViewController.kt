@@ -1,6 +1,9 @@
 import androidx.compose.ui.window.ComposeUIViewController
 import platform.UIKit.UIDevice
 import cafe.adriel.voyager.navigator.Navigator
+import cafe.adriel.voyager.transitions.SlideTransition
+import presentation.screens.mobile.MobileRegisterScreen
+import presentation.screens.tv.TvRegisterScreen
 
 fun MainViewController() = ComposeUIViewController {
 
@@ -10,6 +13,8 @@ fun MainViewController() = ComposeUIViewController {
     } else {
         TvRegisterScreen()
     }
-    Navigator(screen)
+    Navigator(screen) { navigator ->
+        SlideTransition(navigator)
+    }
 }
 

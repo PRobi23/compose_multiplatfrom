@@ -5,6 +5,7 @@ plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsCompose)
+    alias(libs.plugins.ksp)
 }
 
 kotlin {
@@ -56,7 +57,8 @@ kotlin {
 
             implementation(libs.koin.core)
             implementation(libs.koin.compose)
-            implementation(libs.navigation)
+            implementation(libs.voyager.navigation)
+            implementation(libs.voyager.transition)
         }
         desktopMain.dependencies {
             implementation(compose.desktop.currentOs)
@@ -68,7 +70,7 @@ kotlin {
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)
-            implementation(libs.junit)
+            implementation(libs.mockative)
         }
     }
 }
@@ -104,6 +106,13 @@ android {
     }
     dependencies {
         debugImplementation(libs.compose.ui.tooling)
+    }
+    dependencies {
+        configurations
+            .filter { it.name.startsWith("ksp") && it.name.contains("Test") }
+            .forEach {
+                add(it.name, "io.mockative:mockative-processor:2.0.1")
+            }
     }
 }
 
