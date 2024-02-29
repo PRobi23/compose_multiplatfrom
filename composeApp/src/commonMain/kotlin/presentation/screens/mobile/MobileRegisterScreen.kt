@@ -1,6 +1,5 @@
-package presentation.screens
+package presentation.screens.mobile
 
-import MobileRegisterScreenViewModel
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.*
@@ -20,6 +19,7 @@ import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.navigator.LocalNavigator
 import cafe.adriel.voyager.navigator.currentOrThrow
 import org.koin.compose.koinInject
+import presentation.viewModels.MobileRegisterScreenViewModel
 
 class MobileRegisterScreen : Screen {
     @Composable
@@ -72,7 +72,7 @@ class MobileRegisterScreen : Screen {
                     onClick = {
                         val isEmailValid = mobileRegisterScreenViewModel.validateEmail(email)
                         if (isEmailValid) {
-                            navigator.push(MobilePasswordScreen())
+                            navigator.push(MobilePasswordScreen(email))
                         }
                     },
                 ) {

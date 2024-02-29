@@ -1,3 +1,5 @@
+package presentation.viewModels
+
 import dev.icerock.moko.mvvm.viewmodel.ViewModel
 import domain.EmailValidatorUseCase
 import kotlinx.coroutines.flow.MutableStateFlow

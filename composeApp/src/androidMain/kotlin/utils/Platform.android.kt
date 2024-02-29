@@ -1,5 +1,6 @@
+package utils
+
 import android.os.Build
-import util.Platform
 
 class AndroidPlatform : Platform {
     override val name: String = "Android ${Build.VERSION.SDK_INT}"

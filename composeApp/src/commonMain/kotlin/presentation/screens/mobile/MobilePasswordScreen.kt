@@ -1,4 +1,4 @@
-package presentation.screens/*
+package presentation.screens.mobile/*
  * Copyright (C) 2024 Magine Pro
  * All rights reserved.
  */
@@ -19,7 +19,7 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import cafe.adriel.voyager.core.screen.Screen
 
-class MobilePasswordScreen : Screen {
+class MobilePasswordScreen(private val email: String) : Screen {
 
     @Composable
     override fun Content() {
