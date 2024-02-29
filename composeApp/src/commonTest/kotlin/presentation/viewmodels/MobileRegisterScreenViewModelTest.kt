@@ -1,9 +1,9 @@
-import domain.EmailValidatorUseCase
+import domain.useCases.EmailValidatorUseCase
 import io.mockative.Mock
 import io.mockative.classOf
 import io.mockative.every
 import io.mockative.mock
-import presentation.viewModels.MobileRegisterScreenViewModel
+import presentation.viewModels.mobile.MobileFillInEmailScreenViewModel
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
@@ -13,7 +13,7 @@ class MobileRegisterScreenViewModelTest {
     val emailValidationUseCase = mock(classOf<EmailValidatorUseCase>())
 
 
-    private val viewModel = MobileRegisterScreenViewModel(emailValidationUseCase)
+    private val viewModel = MobileFillInEmailScreenViewModel(emailValidationUseCase)
 
     @Test
     fun `validateEmail - invalid email`() {

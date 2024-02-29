@@ -1,14 +1,14 @@
-package presentation.viewModels
+package presentation.viewModels.mobile
 
 import dev.icerock.moko.mvvm.viewmodel.ViewModel
-import domain.EmailValidatorUseCase
+import domain.useCases.EmailValidatorUseCase
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 
-class MobileRegisterScreenViewModel(private val emailValidatorUseCase: EmailValidatorUseCase) : ViewModel() {
+class MobileFillInEmailScreenViewModel(private val emailValidatorUseCase: EmailValidatorUseCase) : ViewModel() {
 
-    private val _uiState = MutableStateFlow(MobileRegisterScreenUiState())
+    private val _uiState = MutableStateFlow(MobileFillInEmailScreenUiState())
     val uiState = _uiState.asStateFlow()
 
     fun validateEmail(email: String): Boolean {
@@ -20,6 +20,6 @@ class MobileRegisterScreenViewModel(private val emailValidatorUseCase: EmailVali
     }
 }
 
-data class MobileRegisterScreenUiState(
+data class MobileFillInEmailScreenUiState(
     val isEmailValid: Boolean = true
 )

@@ -3,29 +3,34 @@ package presentation.screens.mobile/*
  * All rights reserved.
  */
 
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
+import MobileLoginScreenViewModel
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material.Icon
-import androidx.compose.material.IconButton
-import androidx.compose.material.OutlinedTextField
-import androidx.compose.material.Text
+import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Delete
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.unit.dp
 import cafe.adriel.voyager.core.screen.Screen
+import org.koin.compose.koinInject
 
-class MobilePasswordScreen(private val email: String) : Screen {
+class MobileLoginScreen(private val email: String) : Screen {
 
     @Composable
     override fun Content() {
         var password by remember { mutableStateOf("") }
+        val mobileRegisterScreenViewModel: MobileLoginScreenViewModel = koinInject()
+        val uiState by mobileRegisterScreenViewModel.uiState.collectAsState() //HERE USE THE ONE WITH LIFECYCLE IF POSSIBLE
 
         Column(modifier = Modifier.fillMaxSize()) {
+            Text(text = email)
+            Spacer(modifier = Modifier.height(16.dp))
+
             OutlinedTextField(
                 value = password,
                 onValueChange = { password = it },
@@ -44,6 +49,24 @@ class MobilePasswordScreen(private val email: String) : Screen {
                     }
                 },
             )
+            if (!uiState.isPasswordValid) {
+                Text(
+                    text = "Passwords must have at least 6 characters", style = TextStyle(
+                        color = Color.Red
+                    )
+                )
+            }
+            Button(onClick = {
+                val passwordIsValid = mobileRegisterScreenViewModel.validatePassword(password)
+                if (passwordIsValid) {
+                    mobileRegisterScreenViewModel.login(
+                        email = email,
+                        password = password
+                    )
+                }
+            }) {
+                Text(text = "Log in")
+            }
         }
     }
 }
