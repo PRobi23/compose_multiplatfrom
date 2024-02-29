@@ -1,3 +1,6 @@
+package presentation.screens
+
+import MobileRegisterScreenViewModel
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.*

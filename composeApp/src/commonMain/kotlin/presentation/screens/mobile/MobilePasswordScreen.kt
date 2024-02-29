@@ -1,3 +1,8 @@
+package presentation.screens/*
+ * Copyright (C) 2024 Magine Pro
+ * All rights reserved.
+ */
+
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
