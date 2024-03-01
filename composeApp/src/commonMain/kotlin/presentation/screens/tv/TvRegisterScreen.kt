@@ -1,11 +1,17 @@
 package presentation.screens.tv
 
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.Button
+import androidx.compose.material.Icon
+import androidx.compose.material.IconButton
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.OutlinedTextField
 import androidx.compose.material.Text
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Check
+import androidx.compose.material.icons.filled.Delete
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -14,6 +20,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -32,6 +39,7 @@ class TvRegisterScreen : Screen {
 
             var email by remember { mutableStateOf("") }
             var password by remember { mutableStateOf("") }
+            var showPassword by remember { mutableStateOf(value = false) }
 
             Column(
                 modifier = Modifier.fillMaxSize().padding(horizontal = 16.dp),
@@ -48,6 +56,7 @@ class TvRegisterScreen : Screen {
                 OutlinedTextField(
                     value = email,
                     onValueChange = { email = it },
+                    shape = RoundedCornerShape(percent = 20),
                     label = { Text("Email") },
                     keyboardOptions = KeyboardOptions(
                         keyboardType = KeyboardType.Email,
@@ -69,12 +78,26 @@ class TvRegisterScreen : Screen {
                     value = password,
                     onValueChange = { password = it },
                     label = { Text("Password") },
-                    visualTransformation = PasswordVisualTransformation(),
+                    shape = RoundedCornerShape(percent = 20),
+                    visualTransformation = if (showPassword) {
+                        VisualTransformation.None
+                    } else {
+                        PasswordVisualTransformation()
+
+                    },
                     keyboardOptions = KeyboardOptions(
                         keyboardType = KeyboardType.Password,
                         imeAction = ImeAction.Done
                     ),
-                    modifier = Modifier.fillMaxWidth()
+                    modifier = Modifier.fillMaxWidth(),
+                    trailingIcon = {
+                        IconButton(onClick = { showPassword = !showPassword }) {
+                            Icon(
+                                imageVector = Icons.Filled.Check,
+                                contentDescription = "Show password"
+                            )
+                        }
+                    },
                 )
                 if (!uiState.isPasswordValid) {
                     Text(

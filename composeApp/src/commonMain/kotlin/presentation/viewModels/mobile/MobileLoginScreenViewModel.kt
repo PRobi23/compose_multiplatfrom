@@ -4,6 +4,7 @@ import domain.useCases.UserLoginUseCase
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.launch
 
 class MobileLoginScreenViewModel(
     private val passwordValidatorUseCase: PasswordValidatorUseCase,
@@ -22,7 +23,9 @@ class MobileLoginScreenViewModel(
     }
 
     fun login(email: String, password: String) {
-        userLoginUseCase(email = email, password = password)
+        viewModelScope.launch {
+            userLoginUseCase(email = email, password = password)
+        }
     }
 }
 

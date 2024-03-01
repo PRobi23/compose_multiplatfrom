@@ -1,12 +1,15 @@
 package presentation.viewModels.tv
 
 import dev.icerock.moko.mvvm.viewmodel.ViewModel
+import domain.model.LoginResponse
 import domain.useCases.EmailValidatorUseCase
 import domain.useCases.PasswordValidatorUseCase
 import domain.useCases.UserLoginUseCase
+import io.kamel.core.Resource
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.launch
 
 
 class TvRegisterScreenViewModel(
@@ -35,7 +38,15 @@ class TvRegisterScreenViewModel(
     }
 
     fun login(email: String, password: String) {
-        userLoginUseCase(email = email, password = password)
+        viewModelScope.launch {
+            val loginResult = userLoginUseCase(email = email, password = password)
+
+            if (loginResult.isSuccess) {
+
+            } else if (loginResult.isFailure) {
+
+            }
+        }
     }
 }
 

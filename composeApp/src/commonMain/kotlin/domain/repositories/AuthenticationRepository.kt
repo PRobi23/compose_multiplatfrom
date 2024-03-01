@@ -1,6 +1,8 @@
 package domain.repositories
 
+import domain.model.LoginResponse
+
 interface AuthenticationRepository {
 
-    fun login(password: String, email: String)
+    suspend fun login(password: String, email: String): Result<LoginResponse>
 }

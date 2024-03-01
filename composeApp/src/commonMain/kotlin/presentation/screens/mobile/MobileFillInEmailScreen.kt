@@ -1,6 +1,7 @@
 package presentation.screens.mobile
 
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
@@ -50,6 +51,7 @@ class MobileFillInEmailScreen : Screen {
                         keyboardType = KeyboardType.Email,
                         imeAction = ImeAction.Next
                     ),
+                    shape = RoundedCornerShape(percent = 20),
                     modifier = Modifier.fillMaxWidth(),
                     trailingIcon = {
                         IconButton(onClick = { email = "" }) {
