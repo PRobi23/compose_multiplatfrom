@@ -7,8 +7,9 @@ import domain.useCases.EmailValidatorUseCase
 import domain.useCases.PasswordValidatorUseCase
 import domain.useCases.UserLoginUseCase
 import io.ktor.client.*
-import io.ktor.client.plugins.contentnegotiation.*
+import io.ktor.client.plugins.cookies.*
 import io.ktor.serialization.kotlinx.json.*
+import kotlinx.serialization.json.Json
 import org.koin.dsl.module
 import presentation.viewModels.mobile.MobileFillInEmailScreenViewModel
 import presentation.viewModels.tv.TvRegisterScreenViewModel
@@ -23,8 +24,13 @@ val appModule = module {
     //Data layer
     single<HttpClient> {
         HttpClient {
-            install(ContentNegotiation) {
-                json()
+            install(HttpCookies) // this is for logging in
+            install(io.ktor.client.plugins.contentnegotiation.ContentNegotiation) {
+                // I'm using kotlinx.serialization, so you'd need to import that as well.
+                json(Json {
+                    prettyPrint = true
+                    isLenient = true
+                })
             }
         }
     }

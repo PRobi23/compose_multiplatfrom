@@ -6,7 +6,6 @@ plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsCompose)
     alias(libs.plugins.kotlinxSerialization)
-    alias(libs.plugins.ksp)
 }
 
 kotlin {
@@ -26,7 +25,7 @@ kotlin {
         iosSimulatorArm64()
     ).forEach { iosTarget ->
         iosTarget.binaries.framework {
-            baseName = "ComposeApp"
+            baseName = "MagineApp"
             isStatic = true
         }
     }
@@ -107,13 +106,6 @@ android {
     }
     dependencies {
         debugImplementation(libs.compose.ui.tooling)
-    }
-    dependencies {
-        configurations
-            .filter { it.name.startsWith("ksp") && it.name.contains("Test") }
-            .forEach {
-                add(it.name, "io.mockative:mockative-processor:2.0.1")
-            }
     }
 }
 

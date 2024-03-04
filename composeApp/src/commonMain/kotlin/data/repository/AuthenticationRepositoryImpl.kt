@@ -6,29 +6,29 @@ import domain.model.LoginResponse
 import domain.repositories.AuthenticationRepository
 import io.ktor.client.*
 import io.ktor.client.call.*
-import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
 import io.ktor.client.request.*
 import io.ktor.client.statement.*
 import io.ktor.http.*
-import io.ktor.serialization.kotlinx.json.json
 import io.ktor.util.*
 
 class AuthenticationRepositoryImpl(
     private val httpClient: HttpClient
 ) : AuthenticationRepository {
 
-    private val baseUrl = "https://client-api.magine.com/api/login/v2/"
+    private val baseUrl = "https://client-api.tvoli.com/api/login/v2/"
 
     @OptIn(InternalAPI::class)
     override suspend fun login(password: String, email: String): Result<LoginResponse> {
         return try {
-            val response: HttpResponse = httpClient.post(baseUrl + "auth/email") {
+            val response: HttpResponse = httpClient.request(baseUrl + "auth/email") {
+                method = HttpMethod.Post
                 contentType(ContentType.Application.Json)
+                header(HttpHeaders.ContentType, ContentType.Application.Json)
+                header("Magine-AccessToken", "e3be08fd-ae78-401a-a75f-e978c8784b7c")
+
                 body = LoginRequestDto(
-                    dynamic = emptyMap(),
                     identity = email,
-                    accessKey = password,
-                    name = email
+                    accessKey = password
                 )
             }
 
@@ -41,6 +41,5 @@ class AuthenticationRepositoryImpl(
         } catch (e: Exception) {
             Result.failure(e)
         }
-
     }
 }
