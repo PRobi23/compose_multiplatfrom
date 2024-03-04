@@ -1,8 +1,10 @@
 package data.repository
 
 import data.model.remote.LoginRequestDto
+import data.model.remote.LoginResponseDto
 import domain.model.BadRequestException
 import domain.model.LoginResponse
+import domain.model.toLoginResponse
 import domain.repositories.AuthenticationRepository
 import io.ktor.client.*
 import io.ktor.client.call.*
@@ -20,21 +22,24 @@ class AuthenticationRepositoryImpl(
     @OptIn(InternalAPI::class)
     override suspend fun login(password: String, email: String): Result<LoginResponse> {
         return try {
-            val response: HttpResponse = httpClient.request(baseUrl + "auth/email") {
+            val response: HttpResponse = httpClient.request() {
+                url(baseUrl + "auth/email")
                 method = HttpMethod.Post
                 contentType(ContentType.Application.Json)
                 header(HttpHeaders.ContentType, ContentType.Application.Json)
                 header("Magine-AccessToken", "e3be08fd-ae78-401a-a75f-e978c8784b7c")
 
-                body = LoginRequestDto(
-                    identity = email,
-                    accessKey = password
+                setBody(
+                    LoginRequestDto(
+                        identity = email,
+                        accessKey = password
+                    )
                 )
             }
 
             if (response.status.isSuccess()) {
-                val loginResponse = response.body<LoginResponse>()
-                Result.success(loginResponse)
+                val loginResponseDto = response.body<LoginResponseDto>()
+                Result.success(loginResponseDto.toLoginResponse())
             } else {
                 Result.failure(BadRequestException(response.status))
             }
