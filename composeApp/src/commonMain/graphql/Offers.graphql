@@ -1,0 +1,80 @@
+query getEntitledOffers {
+  viewer {
+    entitlements {
+      edges {
+        node {
+          __typename
+          offer {
+            ...OfferFragment
+          }
+          ... on EntitlementRentType {
+            entitledUntil
+            expiresInSeconds
+          }
+          ... on EntitlementPassType {
+            entitledUntil
+            expiresInSeconds
+          }
+          ... on EntitlementThirdPartyType {
+            entitledUntil
+            expiresInSeconds
+          }
+        }
+      }
+    }
+    subscriptions {
+      edges {
+        node {
+          offerId
+          promoCode {
+            code
+            expiry
+            remaining
+          }
+          billing {
+            price {
+              netPrice
+              grossPrice
+              currency
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+fragment OfferFragment on OfferInterfaceType {
+  __typename
+  id
+  title
+  usps
+  ... on SubscribeType {
+    priceInCents
+    currency
+    recurringPeriod {
+      length
+      unit
+    }
+  }
+  ... on BuyType {
+    priceInCents
+    currency
+  }
+  ... on PassType {
+    priceInCents
+    currency
+    purchaseAvailableUntil
+  }
+  ... on RentType {
+    priceInCents
+    currency
+  }
+  ... on ThirdPartyType {
+    subtype
+    providerName
+    externalOfferId
+    subtype
+    entitlementDurationSec
+  }
+}

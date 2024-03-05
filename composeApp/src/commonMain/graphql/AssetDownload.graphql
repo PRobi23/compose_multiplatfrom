@@ -1,0 +1,93 @@
+query AssetMetadata($magineId: ID!) {
+    viewer {
+        viewable(magineId: $magineId) {
+            magineId
+            ... AssetFragment
+        }
+    }
+}
+
+fragment AssetFragment on ViewableInterface {
+    magineId
+    title
+    description
+    posterImage:image(type:"poster")
+    coverImage:image(type:"sixteen-nine")
+    ... AssetEpisodeFragment
+    ... AssetShowFragment
+    ... AssetMovieFragment
+    ... AssetProgramFragment
+}
+
+fragment AssetEpisodeFragment on Episode {
+    magineId
+    title
+    descriptionText:description
+    genres
+    posterImage:image(type:"poster")
+    coverImage:image(type:"sixteen-nine")
+    seasonNumber
+    episodeNumber
+    playables {
+        episodePlayableId: id
+        kind
+        ... AssetPlayableFragment
+    }
+    show {
+        posterImage:image(type:"poster")
+    }
+}
+
+fragment AssetShowFragment on Show {
+    magineId
+    title
+    descriptionText:description
+    genres
+    showImage:image
+    seasons {
+        seasonNumber
+        episodes {
+            episodeNumber
+            title
+        }
+    }
+}
+
+fragment AssetMovieFragment on Movie {
+    magineId
+    title
+    descriptionText:description
+    genres
+    durationHuman
+    productionYear
+    posterImage:image(type:"poster")
+    coverImage:image(type:"sixteen-nine")
+    playables {
+        moviePlayableId: id
+        kind
+        ... AssetPlayableFragment
+    }
+}
+
+fragment AssetProgramFragment on Program {
+    magineId
+    title
+    descriptionText:description
+    genres
+    coverImage:image(type:"sixteen-nine")
+    posterImage:image(type:"poster")
+    playables {
+        programPlayableId: id
+        kind
+        ... AssetPlayableFragment
+    }
+}
+
+fragment AssetPlayableFragment on Playable {
+    ... AssetVODPlayableFragment
+}
+
+fragment AssetVODPlayableFragment on VodPlayable {
+    vodPlayableId: id
+    kind
+}

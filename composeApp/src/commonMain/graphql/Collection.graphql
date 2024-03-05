@@ -1,0 +1,182 @@
+query CollectionContent($collectionId: ID!, $first: Int, $after: String) {
+    viewer {
+        block(magineId: $collectionId) {
+            id
+            __typename
+            ... BookmarksFragment
+            ... ContinueWatchingFragment
+            ... EntitledContentFragment
+            ... FavouriteChannelsFragment
+            ... FeaturedCarouselFragment
+            ... FeaturedFragment
+            ... LiveChannelsFragment
+            ... PosterFragment
+            ... SixteenNineFragment
+            ... LinkCollectionFragment
+        }
+    }
+}
+
+# Collection implementation
+
+fragment BookmarksFragment on BookmarksCollection {
+    magineId
+    title
+    description
+    image
+    collectionUI
+    viewables(first: $first, after: $after) {
+        pageInfo {
+            ... PageInfoFragment
+        },
+        edges {
+            node {
+                ... ViewableInterfaceFragment
+            }
+        }
+    }
+}
+
+fragment ContinueWatchingFragment on ContinueWatchingCollection {
+    magineId
+    title
+    description
+    image
+    collectionUI
+    viewables(first: $first, after: $after) {
+        pageInfo {
+            ... PageInfoFragment
+        },
+        edges {
+            node {
+                ... ViewableInterfaceFragment
+            }
+        }
+    }
+}
+
+fragment EntitledContentFragment on EntitledContentCollection {
+    magineId
+    title
+    description
+    image
+    collectionUI
+    viewables(first: $first, after: $after) {
+        pageInfo {
+            ... PageInfoFragment
+        },
+        edges {
+            node {
+                ... ViewableInterfaceFragment
+            }
+        }
+    }
+}
+
+fragment FavouriteChannelsFragment on FavouriteChannelsCollection {
+    magineId
+    title
+    description
+    image
+    collectionUI
+    viewables(first: $first, after: $after) {
+        pageInfo {
+            ... PageInfoFragment
+        },
+        edges {
+            node {
+                ... ViewableInterfaceFragment
+            }
+        }
+    }
+}
+
+fragment FeaturedCarouselFragment on FeaturedCarouselCollection {
+    magineId
+    title
+    description
+    image
+    collectionUI
+    viewables(first: $first, after: $after) {
+        pageInfo {
+            ... PageInfoFragment
+        },
+        edges {
+            node {
+                ... ViewableInterfaceFragment
+            }
+        }
+    }
+}
+
+fragment FeaturedFragment on FeaturedCollection {
+    magineId
+    title
+    description
+    image
+    collectionUI
+    viewables(first: $first, after: $after) {
+        pageInfo {
+            ... PageInfoFragment
+        },
+        edges {
+            node {
+                ... ViewableInterfaceFragment
+            }
+        }
+    }
+}
+
+fragment LiveChannelsFragment on LiveChannelsCollection {
+    magineId
+    title
+    description
+    image
+    collectionUI
+    viewables(first: $first, after: $after) {
+        pageInfo {
+            ... PageInfoFragment
+        },
+        edges {
+            node {
+                ... ViewableInterfaceFragment
+            }
+        }
+    }
+}
+
+fragment PosterFragment on PosterCollection {
+    magineId
+    title
+    description
+    image
+    collectionUI
+    viewables(first: $first, after: $after) {
+        pageInfo {
+            ... PageInfoFragment
+        },
+        edges {
+            node {
+                ... ViewableInterfaceFragment
+            }
+        }
+    }
+}
+
+fragment SixteenNineFragment on SixteenNineCollection {
+    magineId
+    title
+    description
+    image
+    collectionUI
+    viewables(first: $first, after: $after) {
+        pageInfo {
+            ... PageInfoFragment
+        },
+        edges {
+            node {
+                ... ViewableInterfaceFragment
+            }
+        }
+    }
+}

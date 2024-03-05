@@ -1,0 +1,7 @@
+mutation deleteUserAccount($clientMutationId:String!){
+    deleteUserAccount(
+    input: {
+    clientMutationId: $clientMutationId}) {
+        clientMutationId
+    }
+} 

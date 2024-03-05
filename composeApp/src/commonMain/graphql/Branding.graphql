@@ -1,0 +1,11 @@
+query resellerBranding {
+  viewer {
+    userId
+    resellerBranding {
+      logo {
+        dark
+        light
+      }
+    }
+  }
+}

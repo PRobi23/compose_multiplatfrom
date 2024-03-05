@@ -9,6 +9,10 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
+    <list default="true" id="ab67b540-53f0-44c2-8913-257ba742d7f0" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/local.properties" beforeDir="false" afterPath="$PROJECT_DIR$/local.properties" afterDir="false" />
+    </list>
     <list default="true" id="ab67b540-53f0-44c2-8913-257ba742d7f0" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -93,12 +97,22 @@
     <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectId" id="2clx0qlSIgOKIPsErzNHCIuCEaZ" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.cidr.known.project.marker": "true",
+    "cf.first.check.clang-format": "false",
+    "cidr.known.project.marker": "true",
+    "git-widget-placeholder": "develop",
+    "last_opened_file_path": "/Users/robertpapp/Work/multiplatform"
+  }
+}]]></component>
     "ApkExportedModule": "Multiplatform.composeApp",
     "BundleExportedModule": "Multiplatform.composeApp",
     "DEBUGGABLE_DEVICE": "google-pixel_6a-36201JEGR07273",

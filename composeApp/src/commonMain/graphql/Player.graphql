@@ -1,0 +1,115 @@
+
+query PlayerBroadcasts($viewableId: ID!, $date: String!) {
+    viewer {
+        viewable(magineId: $viewableId) {
+            ... on Channel {
+                id
+                title
+                genres
+                providedBy {
+                    brand
+                    logo
+                }
+                broadcasts(day: $date) {
+                    ... PlayerBroadcastFragment
+                }
+                playable {
+                    ...PlayerChannelPlayableFragment
+                }
+            }
+        }
+    }
+}
+
+
+fragment PlayerBroadcastFragment on Broadcast {
+    id
+    title
+    start
+    stop
+    image
+    description
+    rights {
+        fastForward
+        rewind
+        pause
+        adsFastForward
+        adsRewind
+        adsPause
+    }
+}
+
+query PlayerViewable($viewableId: ID!) {
+    viewer {
+        viewable(magineId: $viewableId) {
+            ... PlayerViewableFragment
+        }
+    }
+}
+
+fragment PlayerViewableFragment on ViewableInterface {
+    title
+    sixteenNineImage: image(type: "sixteen-nine")
+    ... Episode
+}
+
+fragment Episode on Episode {
+    seasonNumber
+    episodeNumber
+    show {
+        seasons {
+            seasonNumber
+            episodes {
+                viewableId: magineId
+                defaultPlayable {
+                    playableId: id
+                }
+                episodeNumber
+                seasonNumber
+                title
+                sixteenNineImage: image(type: "sixteen-nine")
+                entitlement {
+                    offerId
+                }
+                offers {
+                    ... OfferFragment
+                }
+            }
+        }
+    }
+}
+
+fragment PlayerChannelPlayableFragment on ChannelPlayable {
+    rights {
+        fastForward
+        rewind
+        pause
+        adsFastForward
+        adsRewind
+        adsPause
+    }
+    mms
+    mmsOrigCode
+}
+
+query PlayerUserChannels {
+    viewer {
+        channels {
+            edges {
+                node {
+                    ... PlayerChannelFragment
+                }
+            }
+        }
+    }
+}
+
+fragment PlayerChannelFragment on Channel {
+    viewableId: magineId
+    title
+    logoDefault:image(type: "logo-dark")
+    playable {
+        id
+        ... PlayerChannelPlayableFragment
+    }
+}

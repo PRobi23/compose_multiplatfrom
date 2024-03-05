@@ -1,0 +1,159 @@
+query ViewableViewContent($magineId: ID!, $date: String) {
+    viewer {
+        viewable(magineId: $magineId) {
+            magineId
+            ... on Show {
+                ... ShowViewableFragment
+                ... ViewableInterfaceFragment
+            }
+            ... on Episode {
+                ... EpisodeViewableFragment
+                ... ViewableInterfaceFragment
+            }
+            ... on Channel {
+                ... ChannelViewableFragment
+                ... ViewableInterfaceFragment
+            }
+            ... on Movie {
+                ... MovieViewableFragment
+                ... ViewableInterfaceFragment
+            }
+            ... on Program {
+                ... ProgramViewableFragment
+                ... ViewableInterfaceFragment
+            }
+        }
+    }
+}
+
+# Viewable view fragments
+
+fragment ProgramViewableFragment on Program {
+    inMyList
+    webview
+    providedBy {
+        ... ProvidedByFragment
+    }
+    related {
+        ... ViewableInterfaceFragment
+    }
+    offers {
+        ... OfferFragment
+    }
+    linkedViewables {
+        ... TrailerFragment
+    }
+    collections {
+        ... ViewablePosterCollection
+        ... ViewableSixteenNineCollection
+    }
+}
+
+fragment MovieViewableFragment on Movie {
+    trailer
+    inMyList
+    webview
+    countriesOfOrigin
+    providedBy {
+        ... ProvidedByFragment
+    }
+    related {
+        ... ViewableInterfaceFragment
+    }
+    offers {
+        ... OfferFragment
+    }
+    linkedViewables {
+        ... TrailerFragment
+    }
+    collections {
+        ... ViewableSixteenNineCollection
+        ... ViewablePosterCollection
+    }
+}
+
+fragment ChannelViewableFragment on Channel {
+    inMyList
+    providedBy {
+        ... ProvidedByFragment
+    }
+    broadcastsForDate: broadcasts(day: $date) {
+        ... BroadcastFragment
+    }
+    webview
+    ... ViewableInterfaceFragment
+    offers {
+        ... OfferFragment
+    }
+    collections {
+        ... ViewableSixteenNineCollection
+        ... ViewablePosterCollection
+    }
+}
+
+fragment EpisodeViewableFragment on Episode {
+    webview
+    show {
+        ... ShowViewableFragment
+    }
+    related {
+        ... ViewableInterfaceFragment
+    }
+    ... ViewableInterfaceFragment
+    offers {
+        ... OfferFragment
+    }
+    collections {
+        ... ViewableSixteenNineCollection
+        ... ViewablePosterCollection
+    }
+}
+
+fragment ShowEpisodeViewableFragment on Episode {
+    webview
+    related {
+        ... ViewableInterfaceFragment
+    }
+    ... ViewableInterfaceFragment
+    offers {
+        ... OfferFragment
+    }
+}
+
+fragment ShowViewableFragment on Show {
+    trailer
+    inMyList
+    webview
+    countriesOfOrigin
+    providedBy {
+        ... ProvidedByFragment
+    }
+    selectedEpisode {
+        title
+        ... ViewableInterfaceFragment
+    }
+    seasons {
+        seasonNumber
+        episodes {
+            ... ShowEpisodeViewableFragment
+        }
+    }
+    related {
+        ... ViewableInterfaceFragment
+    }
+    offers {
+        ... OfferFragment
+    }
+    linkedViewables {
+        ... TrailerFragment
+    }
+    collections {
+        ... ViewableSixteenNineCollection
+        ... ViewablePosterCollection
+    }
+}
+
+fragment ProvidedByFragment on ProvidedBy {
+    brand
+    logo
+}

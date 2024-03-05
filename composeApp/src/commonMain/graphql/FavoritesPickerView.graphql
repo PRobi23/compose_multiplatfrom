@@ -1,0 +1,40 @@
+query FavoriteChannels {
+    viewer {
+        channels {
+            pageInfo {
+                hasNextPage
+                hasPreviousPage
+                startCursor
+                endCursor
+            }
+            edges {
+                node {
+                    ... FavoritesPickerChannelFragment
+                }
+            }
+        }
+    }
+}
+
+fragment FavoritesPickerChannelFragment on Channel {
+    magineId
+    title
+    logoDefault:image
+    logoDark:image(type: "logo-dark")
+    logoLight:image(type: "logo-light")
+    inMyList
+}
+
+mutation FavoritesPickerAddFavorite($favorite: AddToMyListInput!) {
+    addToMyList(input: $favorite) {
+        viewableId
+        clientMutationId
+    }
+}
+
+mutation FavoritesPickerRemoveFavorite($favorite: RemoveFromMyListInput!) {
+    removeFromMyList(input: $favorite) {
+        viewableId
+        clientMutationId
+    }
+}

@@ -1,0 +1,676 @@
+query BlocksView($magineId: ID!, $first: Int, $after: String) {
+    viewer {
+        view(magineId: $magineId) {
+            blocks(first: $first, after: $after) {
+                pageInfo {
+                    ... PageInfoFragment
+                },
+                edges {
+                    node {
+                        id
+                        magineId
+                        __typename
+                        ... BookmarksCollectionFragment
+                        ... ContinueWatchingCollectionFragment
+                        ... EntitledContentCollectionFragment
+                        ... FavouriteChannelsCollectionFragment
+                        ... FeaturedCarouselCollectionFragment
+                        ... FeaturedCollectionFragment
+                        ... LiveChannelsCollectionFragment
+                        ... PosterCollectionFragment
+                        ... SixteenNineCollectionFragment
+                        ... LinkCollectionFragment
+                        ... PromoBlockFragment
+                    }
+                }
+            }
+        }
+    }
+}
+
+query CollectionInfo($collectionId: ID!) {
+    viewer {
+        block(magineId: $collectionId) {
+            __typename
+            magineId
+            ... BookmarksCollectionInfoFragment
+            ... ContinueWatchingCollectionInfoFragment
+            ... EntitledContentCollectionInfoFragment
+            ... FavouriteChannelsCollectionInfoFragment
+            ... FeaturedCarouselCollectionInfoFragment
+            ... FeaturedCollectionInfoFragment
+            ... LiveChannelsCollectionInfoFragment
+            ... PosterCollectionInfoFragment
+            ... SixteenNineCollectionInfoFragment
+            ... LinkCollectionInfoFragment
+        }
+    }
+}
+
+fragment BookmarksCollectionInfoFragment on BookmarksCollection {
+    title
+}
+
+fragment ContinueWatchingCollectionInfoFragment on ContinueWatchingCollection {
+    title
+}
+
+fragment EntitledContentCollectionInfoFragment on EntitledContentCollection {
+    title
+}
+
+fragment FavouriteChannelsCollectionInfoFragment on FavouriteChannelsCollection {
+    title
+}
+
+fragment FeaturedCarouselCollectionInfoFragment on FeaturedCarouselCollection {
+    title
+}
+
+fragment FeaturedCollectionInfoFragment on FeaturedCollection {
+    title
+}
+
+fragment LiveChannelsCollectionInfoFragment on LiveChannelsCollection {
+    title
+}
+
+fragment PosterCollectionInfoFragment on PosterCollection {
+    title
+}
+
+fragment SixteenNineCollectionInfoFragment on SixteenNineCollection {
+    title
+}
+
+fragment LinkCollectionInfoFragment on LinkCollection {
+    title
+}
+
+# Collection implementation
+
+fragment BookmarksCollectionFragment on BookmarksCollection {
+    magineId
+    title
+    description
+    image
+    collectionUI
+    viewables(first: $first) {
+        pageInfo {
+            ... PageInfoFragment
+        },
+        edges {
+            node {
+                ... ViewableInterfaceFragment
+            }
+        }
+    }
+}
+
+fragment ContinueWatchingCollectionFragment on ContinueWatchingCollection {
+    magineId
+    title
+    description
+    image
+    collectionUI
+    viewables(first: $first) {
+        pageInfo {
+            ... PageInfoFragment
+        },
+        edges {
+            node {
+                ... ViewableInterfaceFragment
+            }
+        }
+    }
+}
+
+fragment EntitledContentCollectionFragment on EntitledContentCollection {
+    magineId
+    title
+    description
+    image
+    collectionUI
+    viewables(first: $first) {
+        pageInfo {
+            ... PageInfoFragment
+        },
+        edges {
+            node {
+                ... ViewableInterfaceFragment
+            }
+        }
+    }
+}
+
+fragment FavouriteChannelsCollectionFragment on FavouriteChannelsCollection {
+    magineId
+    title
+    description
+    image
+    collectionUI
+    viewables(first: $first) {
+        pageInfo {
+            ... PageInfoFragment
+        },
+        edges {
+            node {
+                ... ViewableInterfaceFragment
+            }
+        }
+    }
+}
+
+fragment FeaturedCarouselCollectionFragment on FeaturedCarouselCollection {
+    magineId
+    title
+    description
+    image
+    collectionUI
+    viewables(first: $first) {
+        pageInfo {
+            ... PageInfoFragment
+        },
+        edges {
+            node {
+                ... ViewableInterfaceFragment
+            }
+        }
+    }
+}
+
+fragment FeaturedCollectionFragment on FeaturedCollection {
+    magineId
+    title
+    description
+    image
+    collectionUI
+    viewables(first: $first) {
+        pageInfo {
+            ... PageInfoFragment
+        },
+        edges {
+            node {
+                ... ViewableInterfaceFragment
+            }
+        }
+    }
+}
+
+fragment LiveChannelsCollectionFragment on LiveChannelsCollection {
+    magineId
+    title
+    description
+    image
+    collectionUI
+    viewables(first: $first) {
+        pageInfo {
+            ... PageInfoFragment
+        },
+        edges {
+            node {
+                ... ViewableInterfaceFragment
+            }
+        }
+    }
+}
+
+fragment PosterCollectionFragment on PosterCollection {
+    magineId
+    title
+    description
+    image
+    collectionUI
+    viewables(first: $first) {
+        pageInfo {
+            ... PageInfoFragment
+        },
+        edges {
+            node {
+                ... ViewableInterfaceFragment
+            }
+        }
+    }
+}
+
+fragment SixteenNineCollectionFragment on SixteenNineCollection {
+    magineId
+    title
+    description
+    image
+    collectionUI
+    viewables(first: $first) {
+        pageInfo {
+            ... PageInfoFragment
+        },
+        edges {
+            node {
+                ... ViewableInterfaceFragment
+            }
+        }
+    }
+}
+
+# LinkCollection implementation
+
+fragment LinkCollectionFragment on LinkCollection {
+    magineId
+    title
+    description
+    image
+    collectionUI
+    collectionLinks: links(fetchMax: true) {
+        pageInfo {
+            ... PageInfoFragment
+        },
+        edges {
+            node {
+                __typename
+                magineId
+                title
+                description
+                defaultImage:image
+                sixteenNineImage: image(type: "sixteen-nine")
+                posterImage: image(type: "poster")
+            }
+        }
+    }
+}
+
+# PromoBlock implementation
+
+fragment PromoBlockFragment on PromoBlock {
+    magineId
+    title
+    description
+    image
+    blockUI
+    ctaTarget
+    ctaValueType
+    ctaValue
+    ctaLabel
+}
+
+# Search query implementation
+
+query SearchContent($query: String!, $limit: Int!, $next: String!, $show: Boolean!, $movie: Boolean!, $program: Boolean!, $channel: Boolean!) {
+    viewer {
+        shows: search(query: $query, first: $limit, after: $next, kinds: "show") @include(if: $show) {
+            ... SearchResponseFragment
+        }
+        movies: search(query: $query, first: $limit, after: $next, kinds: "movie") @include(if: $movie) {
+            ... SearchResponseFragment
+        }
+        programs: search(query: $query, first: $limit, after: $next, kinds: "program") @include(if: $program) {
+            ... SearchResponseFragment
+        }
+        channels: search(query: $query, first: $limit, after: $next, kinds: "channel") @include(if: $channel) {
+            ... SearchResponseFragment
+        }
+    }
+}
+
+query SearchShow($query: String!, $limit: Int!, $next: String!) {
+    viewer {
+        shows: search(query: $query, first: $limit, after: $next, kinds: "show") {
+            ... SearchResponseFragment
+        }
+    }
+}
+
+query SearchMovie($query: String!, $limit: Int!, $next: String!) {
+    viewer {
+        shows: search(query: $query, first: $limit, after: $next, kinds: "movie") {
+            ... SearchResponseFragment
+        }
+    }
+}
+
+query SearchProgram($query: String!, $limit: Int!, $next: String!) {
+    viewer {
+        shows: search(query: $query, first: $limit, after: $next, kinds: "program") {
+            ... SearchResponseFragment
+        }
+    }
+}
+
+query SearchChannel($query: String!, $limit: Int!, $next: String!) {
+    viewer {
+        shows: search(query: $query, first: $limit, after: $next, kinds: "channel") {
+            ... SearchResponseFragment
+        }
+    }
+}
+
+fragment SearchResponseFragment on SearchResponseConnection {
+    pageInfo {
+        ... PageInfoFragment
+    }
+    edges {
+        node {
+            ... ViewableInterfaceFragment
+        }
+    }
+}
+
+fragment PageInfoFragment on PageInfo {
+    hasPreviousPage
+    startCursor
+    hasNextPage
+    endCursor
+}
+
+# ViewableInterface implementations
+
+fragment ViewableInterfaceFragment on ViewableInterface {
+    __typename
+    magineId
+    title
+    description
+    defaultImage: image
+    sixteenNineImage: image(type: "sixteen-nine")
+    posterImage: image(type: "poster")
+    posterFeatured: image(type: "poster-featured")
+    ... ChannelFragment
+    ... EpisodeFragment
+    ... ShowFragment
+    ... MovieFragment
+    ... ProgramFragment
+    ... TrailerFragment
+}
+
+fragment ChannelFragment on Channel {
+    magineId
+    genres
+    logoDefault:image
+    logoDark:image(type: "logo-dark")
+    logoLight:image(type: "logo-light")
+    entitlement {
+        ... ViewableEntitlementFragment
+    }
+    playable {
+        ... PlayableFragment
+    }
+    broadcasts {
+        ... BroadcastFragment
+    }
+}
+
+fragment EpisodeFragment on Episode {
+    magineId
+    shortDescription
+    durationHuman
+    genres
+    productionYear
+    rating
+    directors
+    cast
+    tagsToRender {
+        ... TagsToRenderFragment
+    }
+    seasonNumber
+    episodeNumber
+    entitlement {
+        ... ViewableEntitlementFragment
+    }
+    show {
+        ... ShowFragment
+    }
+    defaultPlayable {
+        ... PlayableFragment
+    }
+}
+
+fragment ShowFragment on Show {
+    magineId
+    title
+    description
+    defaultImage: image
+    sixteenNineImage: image(type: "sixteen-nine")
+    posterImage: image(type: "poster")
+    genres
+    productionYear
+    rating
+    directors
+    cast
+    tagsToRender {
+        ... TagsToRenderFragment
+    }
+    entitlement {
+        ... ViewableEntitlementFragment
+    }
+    seasons {
+        seasonNumber
+        episodes {
+            episodeNumber
+            defaultPlayable {
+                ... PlayableFragment
+            }
+        }
+    }
+}
+
+fragment MovieFragment on Movie {
+    magineId
+    durationHuman
+    genres
+    productionYear
+    rating
+    directors
+    cast
+    tagsToRender {
+        ... TagsToRenderFragment
+    }
+    entitlement {
+        ... ViewableEntitlementFragment
+    }
+    defaultPlayable {
+        ... PlayableFragment
+    }
+}
+
+fragment ProgramFragment on Program {
+    magineId
+    genres
+    durationHuman
+    tagsToRender {
+        ... TagsToRenderFragment
+    }
+    entitlement {
+        ... ViewableEntitlementFragment
+    }
+    defaultPlayable {
+        ... PlayableFragment
+    }
+}
+
+fragment TrailerFragment on Trailer {
+    magineId
+    title
+    description
+    image(type: "sixteen-nine")
+    entitlement {
+        ... ViewableEntitlementFragment
+    }
+    defaultPlayable {
+        ... PlayableFragment
+    }
+}
+
+fragment BroadcastFragment on Broadcast {
+    id
+    title
+    description
+    coverImage: image
+    sixteenNineImage: image(type: "sixteen-nine")
+    posterFeatured: image(type: "poster-featured")
+    poster: image(type: "poster")
+    image
+    start
+    stop
+    catchup {
+        from
+        to
+    }
+}
+
+fragment TagsToRenderFragment on ViewableTagToRender {
+    title
+    translationKey
+    searchable
+    values
+}
+
+fragment ViewableEntitlementFragment on EntitlementInterfaceType {
+    __typename
+    offer {
+        ... OfferFragment
+    }
+    ... on EntitlementRentType {
+        entitledUntil
+        expiresInSeconds
+    }
+    ... on EntitlementPassType {
+        entitledUntil
+        expiresInSeconds
+    }
+    ... on EntitlementThirdPartyType {
+        entitledUntil
+        expiresInSeconds
+    }
+}
+
+fragment ViewablePosterCollection on PosterCollection {
+    __typename
+    magineId
+    title
+    viewables {
+        edges {
+            node {
+                ... CollectionViewViewableFragment
+            }
+        }
+    }
+}
+
+fragment ViewableSixteenNineCollection on SixteenNineCollection {
+    __typename
+    magineId
+    title
+    viewables {
+        edges {
+            node {
+                ... CollectionViewViewableFragment
+            }
+        }
+    }
+}
+
+fragment CollectionViewViewableFragment on ViewableInterface {
+    __typename
+    id
+    magineId
+    title
+    poster: image(type: "poster")
+    banner: image(type: "sixteen-nine")
+    posterFeatured: image(type: "poster-featured")
+    ... on Episode {
+        show {
+            poster: image(type: "poster")
+        }
+        defaultPlayable {
+            ... PlayableFragment
+        }
+        entitlement {
+            ... ViewableEntitlementFragment
+        }
+    }
+    ... on Show {
+        entitlement {
+            ... ViewableEntitlementFragment
+        }
+    }
+    ... on Movie {
+        defaultPlayable {
+            ... PlayableFragment
+        }
+        entitlement {
+            ... ViewableEntitlementFragment
+        }
+    }
+    ... on Program {
+        defaultPlayable {
+            ... PlayableFragment
+        }
+        entitlement {
+            ... ViewableEntitlementFragment
+        }
+    }
+}
+
+# Playable
+
+fragment PlayableFragment on Playable {
+    id
+    kind
+    ... BroadcastPlayableFragment
+    ... VodPlayableFragment
+    ... LiveEventPlayableFragment
+}
+
+fragment BroadcastPlayableFragment on BroadcastPlayable {
+    id
+    channel {
+        logoDefault: image
+        logoDark:image(type: "logo-dark")
+        logoLight:image(type: "logo-light")
+    }
+    catchup {
+        from
+        to
+    }
+    watchOffset
+    duration
+}
+
+fragment VodPlayableFragment on VodPlayable {
+    watchOffset
+    duration
+    offlineAvailable
+}
+
+fragment LiveEventPlayableFragment on LiveEventPlayable {
+    startTimeUtc
+    catchupStop
+}
+
+fragment CollectionViewPlayableFragment on Playable {
+    ... CollectionViewBroadcastPlayableFragment
+    ... CollectionViewVODPlayableFragment
+    ... CollectionViewLiveEventPlayableFragment
+}
+
+fragment CollectionViewVODPlayableFragment on VodPlayable {
+    id
+    kind
+    duration
+    watchOffset
+}
+
+fragment CollectionViewBroadcastPlayableFragment on BroadcastPlayable {
+    id
+    kind
+    channel {
+        id: magineId
+        title
+        logoDark: image(type: "logo-dark")
+        logoLight: image(type: "logo-light")
+    }
+}
+
+fragment CollectionViewLiveEventPlayableFragment on LiveEventPlayable {
+    id
+    kind
+    startTimeUtc
+    catchupStop
+}

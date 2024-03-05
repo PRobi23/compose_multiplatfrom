@@ -1,0 +1,59 @@
+query EPG($date: String) {
+  viewer {
+    channels {
+      edges {
+        node {
+          ...EPGChannelFragment
+        }
+      }
+    }
+  }
+}
+
+fragment EPGChannelFragment on Channel {
+    magineId
+	title
+    logoDefault:image
+    logoDark:image(type: "logo-dark")
+    logoLight:image(type: "logo-light")
+	playable {
+		... EPGPlayableFragment
+	}
+	broadcasts(day: $date) {
+        ... EPGBroadcastInfoFragment
+	}
+    entitlement {
+        offerId
+    }
+}
+
+fragment EPGBroadcastInfoFragment on Broadcast {
+	id
+	title
+	start
+	stop
+    catchup {
+        from
+        to
+    }
+    liveAvailable
+}
+
+
+fragment EPGPlayableFragment on Playable {
+	... EPGChannelPlayable
+	... EPGBroadcastPlayable
+}
+
+fragment EPGChannelPlayable on ChannelPlayable {
+	id
+	duration
+}
+
+fragment EPGBroadcastPlayable on BroadcastPlayable {
+	id
+	catchup {
+		from
+		to
+	}
+}

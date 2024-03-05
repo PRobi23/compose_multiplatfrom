@@ -1,0 +1,14 @@
+
+mutation AddToFavorites($input: AddToMyListInput!) {
+    addToMyList(input: $input) {
+        viewableId
+        clientMutationId
+    }
+}
+
+mutation RemoveFromFavorites($input: RemoveFromMyListInput!) {
+    removeFromMyList(input: $input) {
+        viewableId
+        clientMutationId
+    }
+}

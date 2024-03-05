@@ -5,6 +5,7 @@ plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsCompose)
+    alias(libs.plugins.apollo)
     alias(libs.plugins.kotlinxSerialization)
 }
 
@@ -57,6 +58,11 @@ kotlin {
 
             implementation(libs.koin.core)
             implementation(libs.koin.compose)
+            implementation(libs.navigation)
+
+            api(libs.apollo.runtime)
+            implementation(libs.apollo.normalized.cache)
+            implementation(libs.apollo.normalized.cache.sqlite)
             implementation(libs.voyager.navigation)
             implementation(libs.voyager.transition)
         }
@@ -118,5 +124,12 @@ compose.desktop {
             packageName = "com.magine.multiplatform.magine"
             packageVersion = "1.0.0"
         }
+    }
+}
+
+apollo {
+    service("service") {
+        packageName.set("com.magine.multiplatform.magine")
+        generateOptionalOperationVariables.set(false)
     }
 }
