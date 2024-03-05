@@ -9,9 +9,9 @@ fun MainViewController() = ComposeUIViewController {
 
     //HACK!! https://developer.apple.com/documentation/uikit/uiuserinterfaceidiom/phone
     val screen = if (UIDevice.currentDevice.userInterfaceIdiom == 0L) {
-        MobileFillInEmailScreen()
+        MobileSplashScreen()
     } else {
-        TvRegisterScreen()
+        TvSplashScreen()
     }
     Navigator(screen) { navigator ->
         SlideTransition(navigator)

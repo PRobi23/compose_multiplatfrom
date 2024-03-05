@@ -1,5 +1,9 @@
 package com.magine.multiplatform.magine
 
+import MobileRegisterScreen
+import MobileSplashScreen
+import TvRegisterScreen
+import TvSplashScreen
 import presentation.screens.mobile.MobileFillInEmailScreen
 import presentation.screens.tv.TvRegisterScreen
 import android.os.Bundle
@@ -17,9 +21,9 @@ class MainActivity : ComponentActivity() {
 
         setContent {
             val screen = if (baseContext.isTv()) {
-                TvRegisterScreen()
+                TvSplashScreen()
             } else {
-                MobileFillInEmailScreen()
+                MobileSplashScreen()
             }
     
             Navigator(screen) { navigator ->
