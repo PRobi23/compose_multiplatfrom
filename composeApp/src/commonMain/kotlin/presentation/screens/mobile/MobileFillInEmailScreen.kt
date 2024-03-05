@@ -1,4 +1,7 @@
+package presentation.screens.mobile
+
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
@@ -17,12 +20,13 @@ import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.navigator.LocalNavigator
 import cafe.adriel.voyager.navigator.currentOrThrow
 import org.koin.compose.koinInject
+import presentation.viewModels.mobile.MobileFillInEmailScreenViewModel
 
-class MobileRegisterScreen : Screen {
+class MobileFillInEmailScreen : Screen {
     @Composable
     override fun Content() {
-        val mobileRegisterScreenViewModel: MobileRegisterScreenViewModel = koinInject()
-        val uiState by mobileRegisterScreenViewModel.uiState.collectAsState() //HERE USE THE ONE WITH LIFECYCLE IF POSSIBLE
+        val mobileFillInEmailScreenViewModel: MobileFillInEmailScreenViewModel = koinInject()
+        val uiState by mobileFillInEmailScreenViewModel.uiState.collectAsState() //HERE USE THE ONE WITH LIFECYCLE IF POSSIBLE
         var email by remember { mutableStateOf("") }
         val navigator = LocalNavigator.currentOrThrow
 
@@ -47,6 +51,7 @@ class MobileRegisterScreen : Screen {
                         keyboardType = KeyboardType.Email,
                         imeAction = ImeAction.Next
                     ),
+                    shape = RoundedCornerShape(percent = 20),
                     modifier = Modifier.fillMaxWidth(),
                     trailingIcon = {
                         IconButton(onClick = { email = "" }) {
@@ -59,7 +64,7 @@ class MobileRegisterScreen : Screen {
                 )
                 if (!uiState.isEmailValid) {
                     Text(
-                        text = "NOT VALID", style = TextStyle(
+                        text = "E-mail address is not valid", style = TextStyle(
                             color = Color.Red
                         )
                     )
@@ -67,9 +72,9 @@ class MobileRegisterScreen : Screen {
 
                 Button(
                     onClick = {
-                        val isEmailValid = mobileRegisterScreenViewModel.validateEmail(email)
+                        val isEmailValid = mobileFillInEmailScreenViewModel.validateEmail(email)
                         if (isEmailValid) {
-                            navigator.push(MobilePasswordScreen())
+                            navigator.push(MobileLoginScreen(email))
                         }
                     },
                 ) {

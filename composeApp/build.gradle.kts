@@ -5,6 +5,7 @@ plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsCompose)
+    alias(libs.plugins.kotlinxSerialization)
 }
 
 kotlin {
@@ -24,7 +25,7 @@ kotlin {
         iosSimulatorArm64()
     ).forEach { iosTarget ->
         iosTarget.binaries.framework {
-            baseName = "ComposeApp"
+            baseName = "MagineApp"
             isStatic = true
         }
     }
@@ -56,7 +57,8 @@ kotlin {
 
             implementation(libs.koin.core)
             implementation(libs.koin.compose)
-            implementation(libs.navigation)
+            implementation(libs.voyager.navigation)
+            implementation(libs.voyager.transition)
         }
         desktopMain.dependencies {
             implementation(compose.desktop.currentOs)
@@ -68,7 +70,7 @@ kotlin {
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)
-            implementation(libs.junit)
+            implementation(libs.mockative)
         }
     }
 }

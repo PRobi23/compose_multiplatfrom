@@ -1,3 +1,5 @@
+package utils
+
 import platform.UIKit.UIDevice
 import di.appModule
 import org.koin.core.context.startKoin
