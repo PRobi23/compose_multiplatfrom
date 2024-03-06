@@ -41,7 +41,6 @@ kotlin {
             implementation(libs.compose.ui)
             implementation(libs.ktor.client.okhttp)
             implementation(libs.koin.android)
-            dependsOn(commonMain) 
         }
         commonMain.dependencies {
             implementation(compose.runtime)
@@ -80,6 +79,11 @@ kotlin {
             implementation(libs.kotlin.test)
             implementation(libs.mockative)
         }
+        getByName("androidMain").dependsOn(commonMain.get())
+        getByName("desktopMain").dependsOn(commonMain.get())
+        getByName("iosArm64Main").dependsOn(commonMain.get())
+        getByName("iosX64Main").dependsOn(commonMain.get())
+        getByName("iosSimulatorArm64Main").dependsOn(commonMain.get())
     }
 }
 
