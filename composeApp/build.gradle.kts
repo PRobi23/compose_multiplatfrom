@@ -7,6 +7,7 @@ plugins {
     alias(libs.plugins.jetbrainsCompose)
     alias(libs.plugins.apollo)
     alias(libs.plugins.kotlinxSerialization)
+    alias(libs.plugins.moko.resources)
 }
 
 kotlin {
@@ -40,6 +41,7 @@ kotlin {
             implementation(libs.compose.ui)
             implementation(libs.ktor.client.okhttp)
             implementation(libs.koin.android)
+            dependsOn(commonMain) 
         }
         commonMain.dependencies {
             implementation(compose.runtime)
@@ -132,4 +134,12 @@ apollo {
         packageName.set("com.magine.multiplatform.magine")
         generateOptionalOperationVariables.set(false)
     }
+}
+
+dependencies {
+    commonMainApi(libs.bundles.moko.resources)
+}
+
+multiplatformResources {
+    multiplatformResourcesPackage = "com.magine.multiplatform.magine.commonMain"
 }
