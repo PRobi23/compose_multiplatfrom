@@ -11,8 +11,8 @@ import presentation.screens.tv.TvRegisterScreen
 
 fun main() = application {
     Window(onCloseRequest = ::exitApplication, title = "Multiplatform") {
-        val screen = TvRegisterScreen()
-
+        val screen = TvSplashScreen()
+        Navigator(screen)
         startKoin {
             loadKoinModules(appModule)
         }
