@@ -7,19 +7,22 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
+import multiplatform.composeapp.generated.resources.Res
 import androidx.compose.ui.unit.sp
 import cafe.adriel.voyager.core.screen.Screen
-import com.magine.multiplatform.magine.MR
-import dev.icerock.moko.resources.compose.stringResource
+import multiplatform.composeapp.generated.resources.successful_login
+import org.jetbrains.compose.resources.ExperimentalResourceApi
+import org.jetbrains.compose.resources.stringResource
 
 class SuccessfulLoginScreen : Screen {
 
+    @OptIn(ExperimentalResourceApi::class)
     @Composable
     override fun Content() {
         Column(modifier = Modifier.fillMaxSize()) {
             Text(
                 modifier = Modifier.fillMaxSize(),
-                text = stringResource(MR.strings.successful_login),
+                text = stringResource(Res.string.successful_login),
                 style = TextStyle(
                     textAlign = TextAlign.Center,
                     fontSize = 26.sp

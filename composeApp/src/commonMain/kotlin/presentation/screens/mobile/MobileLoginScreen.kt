@@ -24,14 +24,19 @@ import androidx.compose.ui.unit.dp
 import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.navigator.LocalNavigator
 import cafe.adriel.voyager.navigator.currentOrThrow
-import com.magine.multiplatform.magine.MR
+import multiplatform.composeapp.generated.resources.Res
 import core.UiEvent
-import dev.icerock.moko.resources.compose.stringResource
+import multiplatform.composeapp.generated.resources.invalid_password
+import multiplatform.composeapp.generated.resources.login
+import multiplatform.composeapp.generated.resources.password
+import org.jetbrains.compose.resources.ExperimentalResourceApi
+import org.jetbrains.compose.resources.stringResource
 import org.koin.compose.koinInject
 import presentation.screens.common.SuccessfulLoginScreen
 
 class MobileLoginScreen(private val email: String) : Screen {
 
+    @OptIn(ExperimentalResourceApi::class)
     @Composable
     override fun Content() {
         var password by remember { mutableStateOf("") }
@@ -65,7 +70,7 @@ class MobileLoginScreen(private val email: String) : Screen {
             OutlinedTextField(
                 value = password,
                 onValueChange = { password = it },
-                label = { Text(stringResource(MR.strings.password)) },
+                label = { Text(stringResource(Res.string.password)) },
                 keyboardOptions = KeyboardOptions(
                     keyboardType = KeyboardType.Password,
                     imeAction = ImeAction.Next
@@ -89,7 +94,7 @@ class MobileLoginScreen(private val email: String) : Screen {
             )
             if (!uiState.isPasswordValid) {
                 Text(
-                    text = stringResource(MR.strings.invalid_password), style = TextStyle(
+                    text = stringResource(Res.string.invalid_password), style = TextStyle(
                         color = Color.Red
                     )
                 )
@@ -106,7 +111,7 @@ class MobileLoginScreen(private val email: String) : Screen {
                     }
                 }) {
                 Text(
-                    text = stringResource(MR.strings.login)
+                    text = stringResource(Res.string.login)
                 )
             }
         }

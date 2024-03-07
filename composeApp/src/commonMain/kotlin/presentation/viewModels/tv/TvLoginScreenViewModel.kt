@@ -13,7 +13,9 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import org.jetbrains.compose.resources.ExperimentalResourceApi
 
+@OptIn(ExperimentalResourceApi::class)
 class TvLoginScreenViewModel(
     private val userLoginUseCase: UserLoginUseCase,
     private val passwordValidatorUseCase: PasswordValidatorUseCase,

@@ -3,7 +3,8 @@ import platform.UIKit.UIDevice
 import cafe.adriel.voyager.navigator.Navigator
 import cafe.adriel.voyager.transitions.SlideTransition
 import presentation.screens.mobile.MobileFillInEmailScreen
-import presentation.screens.tv.TvLoginScreen
+import presentation.screens.tv.TvRegisterScreen
+import presentation.screens.tv.TvSplashScreen
 
 fun MainViewController() = ComposeUIViewController {
 

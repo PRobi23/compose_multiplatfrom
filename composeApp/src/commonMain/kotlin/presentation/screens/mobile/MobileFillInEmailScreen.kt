@@ -19,13 +19,19 @@ import androidx.compose.ui.unit.sp
 import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.navigator.LocalNavigator
 import cafe.adriel.voyager.navigator.currentOrThrow
-import com.magine.multiplatform.magine.MR
-import dev.icerock.moko.resources.compose.stringResource
+import multiplatform.composeapp.generated.resources.*
+import multiplatform.composeapp.generated.resources.Res
+import multiplatform.composeapp.generated.resources.email
+import multiplatform.composeapp.generated.resources.invalid_email
+import multiplatform.composeapp.generated.resources.next
+import org.jetbrains.compose.resources.ExperimentalResourceApi
+import org.jetbrains.compose.resources.stringResource
 import org.koin.compose.koinInject
 import presentation.viewModels.mobile.MobileFillInEmailScreenViewModel
 
 class MobileFillInEmailScreen : Screen {
 
+    @OptIn(ExperimentalResourceApi::class)
     @Composable
     override fun Content() {
         val mobileFillInEmailScreenViewModel: MobileFillInEmailScreenViewModel = koinInject()
@@ -39,7 +45,7 @@ class MobileFillInEmailScreen : Screen {
                 verticalArrangement = Arrangement.Center
             ) {
                 Text(
-                    text = stringResource(MR.strings.welcome),
+                    text = stringResource(Res.string.welcome),
                     fontSize = 28.sp,
                     fontWeight = FontWeight.Bold,
                     textAlign = TextAlign.Center,
@@ -49,7 +55,7 @@ class MobileFillInEmailScreen : Screen {
                 OutlinedTextField(
                     value = email,
                     onValueChange = { email = it },
-                    label = { Text(stringResource(MR.strings.email)) },
+                    label = { Text(stringResource(Res.string.email)) },
                     keyboardOptions = KeyboardOptions(
                         keyboardType = KeyboardType.Email,
                         imeAction = ImeAction.Next
@@ -67,7 +73,7 @@ class MobileFillInEmailScreen : Screen {
                 )
                 if (!uiState.isEmailValid) {
                     Text(
-                        text = stringResource(MR.strings.invalid_email), style = TextStyle(
+                        text = stringResource(Res.string.invalid_email), style = TextStyle(
                             color = Color.Red
                         )
                     )
@@ -81,7 +87,7 @@ class MobileFillInEmailScreen : Screen {
                         }
                     },
                 ) {
-                    Text(text = stringResource(MR.strings.next))
+                    Text(text = stringResource(Res.string.next))
                 }
             }
         }

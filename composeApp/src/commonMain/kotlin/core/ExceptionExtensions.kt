@@ -1,9 +1,13 @@
 package core
 
-import com.magine.multiplatform.magine.MR
-import dev.icerock.moko.resources.StringResource
+import multiplatform.composeapp.generated.resources.Res
 import io.ktor.client.plugins.*
 import io.ktor.utils.io.errors.*
+import multiplatform.composeapp.generated.resources.auth_failed_to_login
+import multiplatform.composeapp.generated.resources.error_failed_general
+import multiplatform.composeapp.generated.resources.error_message_network
+import org.jetbrains.compose.resources.ExperimentalResourceApi
+import org.jetbrains.compose.resources.StringResource
 
 // internal codes
 internal const val GENERAL_ERROR = -1
@@ -29,9 +33,10 @@ val Throwable.errorCode: Int
     }
 
 /** Error message shown after failing a HTTP requests. */
+@OptIn(ExperimentalResourceApi::class)
 fun getApiErrorMessage(errorCode: Int): StringResource =
     when (errorCode) {
-        NETWORK_ERROR -> MR.strings.error_message_network
-        LOGIN_FAILED, UNATHORIZED -> MR.strings.auth_failed_to_login
-        else -> MR.strings.error_failed_general
+        NETWORK_ERROR -> Res.string.error_message_network
+        LOGIN_FAILED, UNATHORIZED -> Res.string.auth_failed_to_login
+        else -> Res.string.error_failed_general
     }

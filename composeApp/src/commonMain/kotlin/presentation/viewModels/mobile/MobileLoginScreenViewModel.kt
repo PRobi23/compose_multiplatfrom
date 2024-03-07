@@ -10,7 +10,9 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import org.jetbrains.compose.resources.ExperimentalResourceApi
 
+@OptIn(ExperimentalResourceApi::class)
 class MobileLoginScreenViewModel(
     private val passwordValidatorUseCase: PasswordValidatorUseCase,
     private val userLoginUseCase: UserLoginUseCase

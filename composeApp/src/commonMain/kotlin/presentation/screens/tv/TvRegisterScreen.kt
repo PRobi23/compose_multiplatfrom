@@ -26,10 +26,15 @@ import androidx.compose.ui.unit.sp
 import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.navigator.LocalNavigator
 import cafe.adriel.voyager.navigator.currentOrThrow
-import com.magine.multiplatform.magine.commonMain.MR
 import core.UiEvent
 import core.ui.components.MagineAlertDialog
-import dev.icerock.moko.resources.compose.stringResource
+import multiplatform.composeapp.generated.resources.*
+import multiplatform.composeapp.generated.resources.Res
+import multiplatform.composeapp.generated.resources.auth_failed_to_login
+import multiplatform.composeapp.generated.resources.invalid_email
+import multiplatform.composeapp.generated.resources.password
+import org.jetbrains.compose.resources.ExperimentalResourceApi
+import org.jetbrains.compose.resources.stringResource
 import org.koin.compose.koinInject
 import presentation.screens.common.SuccessfulLoginScreen
 import presentation.viewModels.tv.TvLoginScreenViewModel
@@ -37,6 +42,7 @@ import presentation.viewModels.tv.TvLoginScreenViewModel
 
 class TvRegisterScreen : Screen {
 
+    @OptIn(ExperimentalResourceApi::class)
     @Composable
     override fun Content() {
         MaterialTheme {
@@ -66,7 +72,7 @@ class TvRegisterScreen : Screen {
             if (openDialog.value) {
                 MagineAlertDialog(
                     openDialog = openDialog,
-                    text = stringResource(MR.strings.auth_failed_to_login)
+                    text = stringResource(Res.string.auth_failed_to_login)
                 )
             }
 
@@ -95,7 +101,7 @@ class TvRegisterScreen : Screen {
                 )
                 if (!uiState.isEmailValid) {
                     Text(
-                        text = stringResource(MR.strings.invalid_email), style = TextStyle(
+                        text = stringResource(Res.string.invalid_email), style = TextStyle(
                             color = Color.Red
                         )
                     )
@@ -106,7 +112,7 @@ class TvRegisterScreen : Screen {
                 OutlinedTextField(
                     value = password,
                     onValueChange = { password = it },
-                    label = { Text(stringResource(MR.strings.password)) },
+                    label = { Text(stringResource(Res.string.password)) },
                     shape = RoundedCornerShape(percent = 20),
                     visualTransformation = if (showPassword) {
                         VisualTransformation.None
@@ -130,7 +136,7 @@ class TvRegisterScreen : Screen {
                 )
                 if (!uiState.isPasswordValid) {
                     Text(
-                        text = stringResource(MR.strings.invalid_password), style = TextStyle(
+                        text = stringResource(Res.string.invalid_password), style = TextStyle(
                             color = Color.Red
                         )
                     )
@@ -152,7 +158,7 @@ class TvRegisterScreen : Screen {
                     },
                     modifier = Modifier.fillMaxWidth()
                 ) {
-                    Text(text = stringResource(MR.strings.login))
+                    Text(text = stringResource(Res.string.login))
                 }
             }
         }
