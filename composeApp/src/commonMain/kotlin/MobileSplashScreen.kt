@@ -12,6 +12,8 @@ import multiplatform.composeapp.generated.resources.Res
 import multiplatform.composeapp.generated.resources.splash_bg
 import org.jetbrains.compose.resources.ExperimentalResourceApi
 import org.jetbrains.compose.resources.painterResource
+import presentation.screens.mobile.MobileFillInEmailScreen
+import presentation.screens.mobile.MobileLoginScreen
 
 class MobileSplashScreen: Screen {
     @OptIn(ExperimentalResourceApi::class)
@@ -38,7 +40,7 @@ class MobileSplashScreen: Screen {
         if (isPerformingTask) {
                 Text("Performing some tasks. Please wait!")
         } else {
-            val screen = MobileRegisterScreen()
+            val screen = MobileFillInEmailScreen()
             Navigator(screen)
         }
     }
