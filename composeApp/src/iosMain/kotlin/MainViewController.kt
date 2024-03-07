@@ -3,7 +3,7 @@ import platform.UIKit.UIDevice
 import cafe.adriel.voyager.navigator.Navigator
 import cafe.adriel.voyager.transitions.SlideTransition
 import presentation.screens.mobile.MobileFillInEmailScreen
-import presentation.screens.tv.TvRegisterScreen
+import presentation.screens.tv.TvLoginScreen
 
 fun MainViewController() = ComposeUIViewController {
 
@@ -11,7 +11,7 @@ fun MainViewController() = ComposeUIViewController {
     val screen = if (UIDevice.currentDevice.userInterfaceIdiom == 0L) {
         MobileFillInEmailScreen()
     } else {
-        TvRegisterScreen()
+        TvLoginScreen()
     }
     Navigator(screen) { navigator ->
         SlideTransition(navigator)

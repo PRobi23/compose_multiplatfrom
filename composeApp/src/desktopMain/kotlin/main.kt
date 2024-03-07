@@ -7,11 +7,11 @@ import org.koin.core.context.loadKoinModules
 import org.koin.core.context.startKoin
 import cafe.adriel.voyager.navigator.Navigator
 import cafe.adriel.voyager.transitions.SlideTransition
-import presentation.screens.tv.TvRegisterScreen
+import presentation.screens.tv.TvLoginScreen
 
 fun main() = application {
     Window(onCloseRequest = ::exitApplication, title = "Multiplatform") {
-        val screen = TvRegisterScreen()
+        val screen = TvLoginScreen()
 
         startKoin {
             loadKoinModules(appModule)
@@ -26,5 +26,5 @@ fun main() = application {
 @Preview
 @Composable
 fun AppDesktopPreview() {
-    TvRegisterScreen()
+    TvLoginScreen()
 }

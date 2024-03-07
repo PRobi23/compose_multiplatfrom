@@ -1,7 +1,7 @@
 package com.magine.multiplatform.magine
 
 import presentation.screens.mobile.MobileFillInEmailScreen
-import presentation.screens.tv.TvRegisterScreen
+import presentation.screens.tv.TvLoginScreen
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -17,7 +17,7 @@ class MainActivity : ComponentActivity() {
 
         setContent {
             val screen = if (baseContext.isTv()) {
-                TvRegisterScreen()
+                TvLoginScreen()
             } else {
                 MobileFillInEmailScreen()
             }
@@ -32,5 +32,5 @@ class MainActivity : ComponentActivity() {
 @Preview
 @Composable
 fun RegisterScreenTvPreview() {
-    TvRegisterScreen()
+    TvLoginScreen()
 }

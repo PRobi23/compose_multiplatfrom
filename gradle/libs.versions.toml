@@ -13,8 +13,7 @@ androidx-material = "1.11.0"
 androidx-constraintlayout = "2.1.4"
 androidx-test-junit = "1.1.5"
 androidx-espresso-core = "3.5.1"
-kotlin = "1.9.0"
-compose-multiplatform = "1.9.22"
+kotlin = "1.9.22"
 kotlinx-coroutines = "1.7.3"
 junit = "4.13.2"
 ktor = "2.3.8"
@@ -22,12 +21,12 @@ moko-mvvm = "0.16.1"
 moko-resources = "0.23.0"
 kamel = "0.8.3"
 koin = "3.5.3"
-koin-compose = "1.0.4"
+koin-compose = "1.1.0"
 voyager-navigator = "1.0.0"
-mockk = "1.12.5"
 apollo = "4.0.0-alpha.2"
 voyager = "1.0.0"
 mockative = "2.0.1"
+ksp = "1.9.22-1.0.17"
 
 [libraries]
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
@@ -58,7 +57,6 @@ koin-android = { module = "io.insert-koin:koin-android", version.ref = "koin" }
 koin-core = { module = "io.insert-koin:koin-core", version.ref = "koin" }
 koin-compose = { module = "io.insert-koin:koin-compose", version.ref = "koin-compose" }
 navigation = { module = "cafe.adriel.voyager:voyager-navigator", version.ref = "voyager-navigator" }
-mockk = { module = "io.mockk:mockk", version.ref = "mockk" }
 apollo-runtime = { group = "com.apollographql.apollo3", name = "apollo-runtime", version.ref = "apollo" }
 apollo-normalized-cache = { group = "com.apollographql.apollo3", name = "apollo-normalized-cache", version.ref = "apollo" }
 apollo-normalized-cache-sqlite = { group = "com.apollographql.apollo3", name = "apollo-normalized-cache-sqlite", version.ref = "apollo" }
@@ -77,10 +75,11 @@ moko-resource-compose = { group = "dev.icerock.moko", name = "resources-compose"
 jetbrainsCompose = { id = "org.jetbrains.compose", version.ref = "compose-plugin" }
 androidApplication = { id = "com.android.application", version.ref = "agp" }
 androidLibrary = { id = "com.android.library", version.ref = "agp" }
-kotlinMultiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "compose-multiplatform" }
+kotlinMultiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
 kotlinxSerialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 moko-resources = { id = "dev.icerock.mobile.multiplatform-resources", version.ref = "moko-resources" }
 apollo = { id = "com.apollographql.apollo3", version.ref = "apollo" }
+ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 
 [bundles]
 moko-resources = ["moko-resource", "moko-resource-compose"]

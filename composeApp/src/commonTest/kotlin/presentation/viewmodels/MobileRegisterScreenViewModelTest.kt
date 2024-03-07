@@ -10,10 +10,9 @@ import kotlin.test.assertEquals
 class MobileRegisterScreenViewModelTest {
 
     @Mock
-    val emailValidationUseCase = mock(classOf<EmailValidatorUseCase>())
+    private val emailValidationUseCase = mock(classOf<EmailValidatorUseCase>())
 
-
-    private val viewModel = MobileFillInEmailScreenViewModel(emailValidationUseCase)
+    private val viewModel = MobileFillInEmailScreenViewModel(emailValidatorUseCase = emailValidationUseCase)
 
     @Test
     fun `validateEmail - invalid email`() {

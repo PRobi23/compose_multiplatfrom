@@ -10,8 +10,6 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.OutlinedTextField
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Check
-import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material.icons.outlined.Info
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
@@ -26,21 +24,51 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import cafe.adriel.voyager.core.screen.Screen
+import cafe.adriel.voyager.navigator.LocalNavigator
+import cafe.adriel.voyager.navigator.currentOrThrow
+import com.magine.multiplatform.magine.commonMain.MR
+import core.UiEvent
+import core.ui.components.MagineAlertDialog
+import dev.icerock.moko.resources.compose.stringResource
 import org.koin.compose.koinInject
-import presentation.viewModels.tv.TvRegisterScreenViewModel
+import presentation.screens.common.SuccessfulLoginScreen
+import presentation.viewModels.tv.TvLoginScreenViewModel
 
 
-class TvRegisterScreen : Screen {
+class TvLoginScreen : Screen {
 
     @Composable
     override fun Content() {
         MaterialTheme {
-            val tvRegisterScreenViewModel: TvRegisterScreenViewModel = koinInject()
+            val tvRegisterScreenViewModel: TvLoginScreenViewModel = koinInject()
             val uiState by tvRegisterScreenViewModel.uiState.collectAsState() //HERE USE THE ONE WITH LIFECYCLE IF POSSIBLE
 
             var email by remember { mutableStateOf("") }
             var password by remember { mutableStateOf("") }
             var showPassword by remember { mutableStateOf(value = false) }
+            val openDialog = remember { mutableStateOf(value = false) }
+            val navigator = LocalNavigator.currentOrThrow
+
+            LaunchedEffect(key1 = true) {
+                tvRegisterScreenViewModel.uiEvents.collect { event ->
+                    when (event) {
+                        is UiEvent.ShowErrorToTheUser -> {
+                            openDialog.value = true
+                        }
+
+                        is UiEvent.Success -> {
+                            navigator.push(SuccessfulLoginScreen())
+                        }
+                    }
+                }
+            }
+
+            if (openDialog.value) {
+                MagineAlertDialog(
+                    openDialog = openDialog,
+                    text = stringResource(MR.strings.auth_failed_to_login)
+                )
+            }
 
             Column(
                 modifier = Modifier.fillMaxSize().padding(horizontal = 16.dp),
@@ -67,7 +95,7 @@ class TvRegisterScreen : Screen {
                 )
                 if (!uiState.isEmailValid) {
                     Text(
-                        text = "E-mail address is not valid", style = TextStyle(
+                        text = stringResource(MR.strings.invalid_email), style = TextStyle(
                             color = Color.Red
                         )
                     )
@@ -78,7 +106,7 @@ class TvRegisterScreen : Screen {
                 OutlinedTextField(
                     value = password,
                     onValueChange = { password = it },
-                    label = { Text("Password") },
+                    label = { Text(stringResource(MR.strings.password)) },
                     shape = RoundedCornerShape(percent = 20),
                     visualTransformation = if (showPassword) {
                         VisualTransformation.None
@@ -102,7 +130,7 @@ class TvRegisterScreen : Screen {
                 )
                 if (!uiState.isPasswordValid) {
                     Text(
-                        text = "Passwords must have at least 6 characters", style = TextStyle(
+                        text = stringResource(MR.strings.invalid_password), style = TextStyle(
                             color = Color.Red
                         )
                     )
@@ -124,7 +152,7 @@ class TvRegisterScreen : Screen {
                     },
                     modifier = Modifier.fillMaxWidth()
                 ) {
-                    Text(text = "Log in")
+                    Text(text = stringResource(MR.strings.login))
                 }
             }
         }

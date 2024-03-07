@@ -1,4 +1,6 @@
-package presentation.screens.mobile/*
+package presentation.screens.mobile
+
+/*
  * Copyright (C) 2024 Magine Pro
  * All rights reserved.
  */
@@ -9,8 +11,6 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Check
-import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material.icons.outlined.Info
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
@@ -22,7 +22,13 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import cafe.adriel.voyager.core.screen.Screen
+import cafe.adriel.voyager.navigator.LocalNavigator
+import cafe.adriel.voyager.navigator.currentOrThrow
+import com.magine.multiplatform.magine.commonMain.MR
+import core.UiEvent
+import dev.icerock.moko.resources.compose.stringResource
 import org.koin.compose.koinInject
+import presentation.screens.common.SuccessfulLoginScreen
 
 class MobileLoginScreen(private val email: String) : Screen {
 
@@ -32,6 +38,22 @@ class MobileLoginScreen(private val email: String) : Screen {
         var showPassword by remember { mutableStateOf(value = false) }
         val mobileRegisterScreenViewModel: MobileLoginScreenViewModel = koinInject()
         val uiState by mobileRegisterScreenViewModel.uiState.collectAsState() //HERE USE THE ONE WITH LIFECYCLE IF POSSIBLE
+        var openDialog = remember { mutableStateOf(value = false) }
+        val navigator = LocalNavigator.currentOrThrow
+
+        LaunchedEffect(key1 = true) {
+            mobileRegisterScreenViewModel.uiEvents.collect { event ->
+                when (event) {
+                    is UiEvent.ShowErrorToTheUser -> {
+                        openDialog.value = true
+                    }
+
+                    is UiEvent.Success -> {
+                        navigator.push(SuccessfulLoginScreen())
+                    }
+                }
+            }
+        }
 
         Column(modifier = Modifier.fillMaxSize()) {
             Text(
@@ -43,7 +65,7 @@ class MobileLoginScreen(private val email: String) : Screen {
             OutlinedTextField(
                 value = password,
                 onValueChange = { password = it },
-                label = { Text("Password") },
+                label = { Text(stringResource(MR.strings.password)) },
                 keyboardOptions = KeyboardOptions(
                     keyboardType = KeyboardType.Password,
                     imeAction = ImeAction.Next
@@ -67,7 +89,7 @@ class MobileLoginScreen(private val email: String) : Screen {
             )
             if (!uiState.isPasswordValid) {
                 Text(
-                    text = "Passwords must have at least 6 characters", style = TextStyle(
+                    text = stringResource(MR.strings.invalid_password), style = TextStyle(
                         color = Color.Red
                     )
                 )
@@ -84,7 +106,7 @@ class MobileLoginScreen(private val email: String) : Screen {
                     }
                 }) {
                 Text(
-                    text = "Log in"
+                    text = stringResource(MR.strings.login)
                 )
             }
         }

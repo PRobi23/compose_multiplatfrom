@@ -12,13 +12,13 @@ import io.ktor.serialization.kotlinx.json.*
 import kotlinx.serialization.json.Json
 import org.koin.dsl.module
 import presentation.viewModels.mobile.MobileFillInEmailScreenViewModel
-import presentation.viewModels.tv.TvRegisterScreenViewModel
+import presentation.viewModels.tv.TvLoginScreenViewModel
 
 
 val appModule = module {
     //Use cases
     factory { EmailValidatorUseCase() }
-    factory { UserLoginUseCase(registrationRepository = get()) }
+    factory { UserLoginUseCase(authenticationRepository = get()) }
     factory { PasswordValidatorUseCase() }
 
     //Data layer
@@ -50,7 +50,7 @@ val appModule = module {
     }
 
     viewModelDefinition {
-        TvRegisterScreenViewModel(
+        TvLoginScreenViewModel(
             userLoginUseCase = get(),
             passwordValidatorUseCase = get(),
             emailValidatorUseCase = get()

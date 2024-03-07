@@ -2,7 +2,6 @@ package core
 
 import com.magine.multiplatform.magine.commonMain.MR
 import dev.icerock.moko.resources.StringResource
-import dev.icerock.moko.resources.compose.stringResource
 import io.ktor.client.plugins.*
 import io.ktor.utils.io.errors.*
 
@@ -10,6 +9,8 @@ import io.ktor.utils.io.errors.*
 internal const val GENERAL_ERROR = -1
 internal const val NETWORK_ERROR = -2
 internal const val LOGIN_FAILED = -3
+
+internal const val UNATHORIZED = 401
 
 /** Returns the error code of the request */
 val Throwable.errorCode: Int
@@ -30,6 +31,7 @@ val Throwable.errorCode: Int
 /** Error message shown after failing a HTTP requests. */
 fun getApiErrorMessage(errorCode: Int): StringResource =
     when (errorCode) {
-        NETWORK_ERROR -> MR.strings.error_failed_general
+        NETWORK_ERROR -> MR.strings.error_message_network
+        LOGIN_FAILED, UNATHORIZED -> MR.strings.auth_failed_to_login
         else -> MR.strings.error_failed_general
     }

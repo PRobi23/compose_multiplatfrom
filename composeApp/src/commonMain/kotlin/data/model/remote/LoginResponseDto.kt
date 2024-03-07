@@ -9,6 +9,6 @@ data class LoginResponseDto(
     val registered: Boolean,
     val newUser: Boolean,
     val userId: String,
-    val name: String,
+    val name: String? = null,
     val token: String
 )

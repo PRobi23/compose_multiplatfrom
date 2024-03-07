@@ -4,7 +4,6 @@ import core.getApiErrorMessage
 import dev.icerock.moko.mvvm.viewmodel.ViewModel
 import domain.useCases.PasswordValidatorUseCase
 import domain.useCases.UserLoginUseCase
-import io.kamel.core.Resource
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -17,7 +16,7 @@ class MobileLoginScreenViewModel(
     private val userLoginUseCase: UserLoginUseCase
 ) : ViewModel() {
 
-    private val _uiState = MutableStateFlow(TvRegisterScreenUiState())
+    private val _uiState = MutableStateFlow(MobileRegisterScreenUiState())
     val uiState = _uiState.asStateFlow()
 
     private val _uiEvents = Channel<UiEvent>()
@@ -35,8 +34,10 @@ class MobileLoginScreenViewModel(
         viewModelScope.launch {
             val loginResponse = userLoginUseCase(email = email, password = password)
 
-            if (loginResponse is Result) {
-
+            if (loginResponse.isSuccess) {
+                _uiEvents.send(
+                    UiEvent.Success
+                )
             } else if (loginResponse.isFailure) {
                 val exception = loginResponse.exceptionOrNull()
                 exception?.let {
@@ -47,31 +48,11 @@ class MobileLoginScreenViewModel(
                         UiEvent.ShowErrorToTheUser(stringResource)
                     )
                 }
-
-                /*
-                _uiEvents.send(
-                    UiEvent.ShowErrorToTheUser()
-                )
-                */
             }
         }
     }
-
-    /*
-        private fun getErrorMessageByErrorCode(errorCode: Int): String {
-            return when (errorCode) {
-                LOGIN_FAILED -> {
-
-                }
-
-                else -> {
-
-                }
-            }
-        }
-        */
 }
 
-data class TvRegisterScreenUiState(
+data class MobileRegisterScreenUiState(
     val isPasswordValid: Boolean = true
 )
