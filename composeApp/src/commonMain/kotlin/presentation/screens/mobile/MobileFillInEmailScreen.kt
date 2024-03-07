@@ -19,7 +19,7 @@ import androidx.compose.ui.unit.sp
 import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.navigator.LocalNavigator
 import cafe.adriel.voyager.navigator.currentOrThrow
-import com.magine.multiplatform.magine.commonMain.MR
+import com.magine.multiplatform.magine.MR
 import dev.icerock.moko.resources.compose.stringResource
 import org.koin.compose.koinInject
 import presentation.viewModels.mobile.MobileFillInEmailScreenViewModel

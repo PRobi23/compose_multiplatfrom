@@ -1,6 +1,6 @@
 package core
 
-import com.magine.multiplatform.magine.commonMain.MR
+import com.magine.multiplatform.magine.MR
 import dev.icerock.moko.resources.StringResource
 import io.ktor.client.plugins.*
 import io.ktor.utils.io.errors.*

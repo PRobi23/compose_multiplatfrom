@@ -18,15 +18,13 @@ kotlinx-coroutines = "1.7.3"
 junit = "4.13.2"
 ktor = "2.3.8"
 moko-mvvm = "0.16.1"
-moko-resources = "0.23.0"
 kamel = "0.8.3"
 koin = "3.5.3"
 koin-compose = "1.1.0"
 voyager-navigator = "1.0.0"
-apollo = "4.0.0-alpha.2"
+apollo = "3.8.2"
 voyager = "1.0.0"
 mockative = "2.0.1"
-ksp = "1.9.22-1.0.17"
 
 [libraries]
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
@@ -64,12 +62,6 @@ apollo-mockserver = { group = "com.apollographql.apollo3", name = "apollo-mockse
 apollo-testing-support = { group = "com.apollographql.apollo3", name = "apollo-testing-support", version.ref = "apollo" }
 voyager-navigation = { module = "cafe.adriel.voyager:voyager-navigator", version.ref = "voyager" }
 voyager-transition = { module = "cafe.adriel.voyager:voyager-transitions", version.ref = "voyager" }
-mockative = { module = "io.mockative:mockative", version.ref = "mockative" }
-
-# For resource access
-moko-classpath = { group = "dev.icerock.moko", name = "resources-generator", version.ref = "moko-resources" }
-moko-resource = { group = "dev.icerock.moko", name = "resources", version.ref = "moko-resources" }
-moko-resource-compose = { group = "dev.icerock.moko", name = "resources-compose", version.ref = "moko-resources" }
 
 [plugins]
 jetbrainsCompose = { id = "org.jetbrains.compose", version.ref = "compose-plugin" }
@@ -77,9 +69,4 @@ androidApplication = { id = "com.android.application", version.ref = "agp" }
 androidLibrary = { id = "com.android.library", version.ref = "agp" }
 kotlinMultiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
 kotlinxSerialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
-moko-resources = { id = "dev.icerock.mobile.multiplatform-resources", version.ref = "moko-resources" }
 apollo = { id = "com.apollographql.apollo3", version.ref = "apollo" }
-ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
-
-[bundles]
-moko-resources = ["moko-resource", "moko-resource-compose"]

@@ -7,7 +7,6 @@ plugins {
     alias(libs.plugins.jetbrainsCompose)
     alias(libs.plugins.apollo)
     alias(libs.plugins.kotlinxSerialization)
-    alias(libs.plugins.moko.resources)
 }
 
 kotlin {
@@ -28,7 +27,9 @@ kotlin {
     ).forEach { iosTarget ->
         iosTarget.binaries.framework {
             baseName = "MagineApp"
-            isStatic = true
+            //isStatic = true
+            export("dev.icerock.moko:resources:0.23.0")
+            export("dev.icerock.moko:graphics:0.9.0")
         }
     }
 
@@ -97,7 +98,6 @@ kotlin {
 
         commonTest.dependencies {
             implementation(libs.kotlin.test)
-            implementation(libs.mockative)
         }
     }
 }
@@ -164,10 +164,7 @@ apollo {
 }
 
 dependencies {
+    implementation(project(":composeApp"))
     commonMainApi(libs.bundles.moko.resources)
     testImplementation(libs.junit)
-}
-
-multiplatformResources {
-    multiplatformResourcesPackage = "com.magine.multiplatform.magine.commonMain"
 }

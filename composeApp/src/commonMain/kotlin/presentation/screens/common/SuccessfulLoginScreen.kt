@@ -9,7 +9,7 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.sp
 import cafe.adriel.voyager.core.screen.Screen
-import com.magine.multiplatform.magine.commonMain.MR
+import com.magine.multiplatform.magine.MR
 import dev.icerock.moko.resources.compose.stringResource
 
 class SuccessfulLoginScreen : Screen {

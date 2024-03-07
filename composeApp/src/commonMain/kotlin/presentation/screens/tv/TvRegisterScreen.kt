@@ -35,7 +35,7 @@ import presentation.screens.common.SuccessfulLoginScreen
 import presentation.viewModels.tv.TvLoginScreenViewModel
 
 
-class TvLoginScreen : Screen {
+class TvRegisterScreen : Screen {
 
     @Composable
     override fun Content() {
@@ -46,7 +46,7 @@ class TvLoginScreen : Screen {
             var email by remember { mutableStateOf("") }
             var password by remember { mutableStateOf("") }
             var showPassword by remember { mutableStateOf(value = false) }
-            val openDialog = remember { mutableStateOf(value = false) }
+            var openDialog = remember { mutableStateOf(value = false) }
             val navigator = LocalNavigator.currentOrThrow
 
             LaunchedEffect(key1 = true) {
