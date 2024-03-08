@@ -26,6 +26,7 @@ mockk = "1.12.5"
 apollo = "4.0.0-alpha.2"
 voyager = "1.0.0"
 mockative = "2.0.1"
+stately = "2.0.5"
 
 [libraries]
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
@@ -65,6 +66,7 @@ apollo-testing-support = { group = "com.apollographql.apollo3", name = "apollo-t
 voyager-navigation = { module = "cafe.adriel.voyager:voyager-navigator", version.ref = "voyager" }
 voyager-transition = { module = "cafe.adriel.voyager:voyager-transitions", version.ref = "voyager" }
 mockative = { module = "io.mockative:mockative", version.ref = "mockative" }
+stately-common = { module = "co.touchlab:stately-common", version.ref = "stately" }
 
 [plugins]
 jetbrainsCompose = { id = "org.jetbrains.compose", version.ref = "compose-plugin" }
