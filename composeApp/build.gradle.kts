@@ -26,7 +26,7 @@ kotlin {
         iosSimulatorArm64()
     ).forEach { iosTarget ->
         iosTarget.binaries.framework {
-            baseName = "MagineApp"
+            baseName = "ComposeApp"
             isStatic = true
         }
     }
@@ -75,6 +75,7 @@ kotlin {
             implementation(libs.ktor.client.okhttp)
         }
         iosMain.dependencies {
+            implementation("co.touchlab:stately-common:2.0.5")
             implementation(libs.ktor.client.darwin)
         }
         commonTest.dependencies {
