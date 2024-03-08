@@ -14,6 +14,8 @@ import multiplatform.composeapp.generated.resources.Res
 import multiplatform.composeapp.generated.resources.splash_bg
 import org.jetbrains.compose.resources.ExperimentalResourceApi
 import org.jetbrains.compose.resources.painterResource
+import presentation.screens.mobile.MobileFillInEmailScreen
+import presentation.screens.mobile.MobileLoginScreen
 
 class MobileSplashScreen : Screen {
     @OptIn(ExperimentalResourceApi::class)

@@ -14,6 +14,7 @@ import multiplatform.composeapp.generated.resources.Res
 import multiplatform.composeapp.generated.resources.tv_splash_bg
 import org.jetbrains.compose.resources.ExperimentalResourceApi
 import org.jetbrains.compose.resources.painterResource
+import presentation.screens.tv.TvRegisterScreen
 
 class TvSplashScreen : Screen {
     @OptIn(ExperimentalResourceApi::class)
