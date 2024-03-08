@@ -75,7 +75,7 @@ kotlin {
             implementation(libs.ktor.client.okhttp)
         }
         iosMain.dependencies {
-            implementation("co.touchlab:stately-common:2.0.5")
+            implementation(libs.stately.common) //https://github.com/cashapp/sqldelight/issues/4357 Needed because of this
             implementation(libs.ktor.client.darwin)
         }
         commonTest.dependencies {
