@@ -19,10 +19,19 @@ import androidx.compose.ui.unit.sp
 import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.navigator.LocalNavigator
 import cafe.adriel.voyager.navigator.currentOrThrow
+import multiplatform.composeapp.generated.resources.*
+import multiplatform.composeapp.generated.resources.Res
+import multiplatform.composeapp.generated.resources.email
+import multiplatform.composeapp.generated.resources.invalid_email
+import multiplatform.composeapp.generated.resources.next
+import org.jetbrains.compose.resources.ExperimentalResourceApi
+import org.jetbrains.compose.resources.stringResource
 import org.koin.compose.koinInject
 import presentation.viewModels.mobile.MobileFillInEmailScreenViewModel
 
 class MobileFillInEmailScreen : Screen {
+
+    @OptIn(ExperimentalResourceApi::class)
     @Composable
     override fun Content() {
         val mobileFillInEmailScreenViewModel: MobileFillInEmailScreenViewModel = koinInject()
@@ -36,7 +45,7 @@ class MobileFillInEmailScreen : Screen {
                 verticalArrangement = Arrangement.Center
             ) {
                 Text(
-                    text = "Welcome to Passionflix, enter your details",
+                    text = stringResource(Res.string.welcome),
                     fontSize = 28.sp,
                     fontWeight = FontWeight.Bold,
                     textAlign = TextAlign.Center,
@@ -46,7 +55,7 @@ class MobileFillInEmailScreen : Screen {
                 OutlinedTextField(
                     value = email,
                     onValueChange = { email = it },
-                    label = { Text("Email") },
+                    label = { Text(stringResource(Res.string.email)) },
                     keyboardOptions = KeyboardOptions(
                         keyboardType = KeyboardType.Email,
                         imeAction = ImeAction.Next
@@ -64,7 +73,7 @@ class MobileFillInEmailScreen : Screen {
                 )
                 if (!uiState.isEmailValid) {
                     Text(
-                        text = "E-mail address is not valid", style = TextStyle(
+                        text = stringResource(Res.string.invalid_email), style = TextStyle(
                             color = Color.Red
                         )
                     )
@@ -78,7 +87,7 @@ class MobileFillInEmailScreen : Screen {
                         }
                     },
                 ) {
-                    Text(text = "Next")
+                    Text(text = stringResource(Res.string.next))
                 }
             }
         }

@@ -1,3 +1,5 @@
+package presentation.screens.tv
+
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
@@ -9,38 +11,37 @@ import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.navigator.Navigator
 import kotlinx.coroutines.delay
 import multiplatform.composeapp.generated.resources.Res
-import multiplatform.composeapp.generated.resources.splash_bg
+import multiplatform.composeapp.generated.resources.tv_splash_bg
 import org.jetbrains.compose.resources.ExperimentalResourceApi
 import org.jetbrains.compose.resources.painterResource
-import presentation.screens.mobile.MobileFillInEmailScreen
-import presentation.screens.mobile.MobileLoginScreen
+import presentation.screens.tv.TvRegisterScreen
 
-class MobileSplashScreen: Screen {
+class TvSplashScreen : Screen {
     @OptIn(ExperimentalResourceApi::class)
     @Composable
     override fun Content() {
         var isPerformingTask by remember { mutableStateOf(true) }
-        
+
         Box(
             modifier = Modifier.fillMaxSize(),
             contentAlignment = Alignment.Center
         ) {
             // Load the local image resource
             Image(
-                painter = painterResource(Res.drawable.splash_bg),
+                painter = painterResource(Res.drawable.tv_splash_bg),
                 contentDescription = null,
                 modifier = Modifier.fillMaxSize()
             )
         }
-        
+
         LaunchedEffect(Unit) {
             delay(2000) // Do some heavy lifting
             isPerformingTask = false
         }
         if (isPerformingTask) {
-                Text("Performing some tasks. Please wait!")
+            Text("Performing some tasks. Please wait!")
         } else {
-            val screen = MobileFillInEmailScreen()
+            val screen = TvRegisterScreen()
             Navigator(screen)
         }
     }

@@ -8,11 +8,13 @@ import org.koin.core.context.startKoin
 import cafe.adriel.voyager.navigator.Navigator
 import cafe.adriel.voyager.transitions.SlideTransition
 import presentation.screens.tv.TvRegisterScreen
+import presentation.screens.tv.TvSplashScreen
 
 fun main() = application {
     Window(onCloseRequest = ::exitApplication, title = "Multiplatform") {
         val screen = TvSplashScreen()
         Navigator(screen)
+
         startKoin {
             loadKoinModules(appModule)
         }

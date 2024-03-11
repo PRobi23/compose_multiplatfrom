@@ -1,18 +1,22 @@
 package presentation.viewModels.tv
 
+import core.UiEvent
+import core.errorCode
+import core.getApiErrorMessage
 import dev.icerock.moko.mvvm.viewmodel.ViewModel
-import domain.model.LoginResponse
 import domain.useCases.EmailValidatorUseCase
 import domain.useCases.PasswordValidatorUseCase
 import domain.useCases.UserLoginUseCase
-import io.kamel.core.Resource
+import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import org.jetbrains.compose.resources.ExperimentalResourceApi
 
-
-class TvRegisterScreenViewModel(
+@OptIn(ExperimentalResourceApi::class)
+class TvLoginScreenViewModel(
     private val userLoginUseCase: UserLoginUseCase,
     private val passwordValidatorUseCase: PasswordValidatorUseCase,
     private val emailValidatorUseCase: EmailValidatorUseCase
@@ -20,6 +24,9 @@ class TvRegisterScreenViewModel(
 
     private val _uiState = MutableStateFlow(TvRegisterScreenUiState())
     val uiState = _uiState.asStateFlow()
+
+    private val _uiEvents = Channel<UiEvent>()
+    val uiEvents = _uiEvents.receiveAsFlow()
 
     fun validateEmail(email: String): Boolean {
         val isEmailValid = emailValidatorUseCase(email)
@@ -39,12 +46,22 @@ class TvRegisterScreenViewModel(
 
     fun login(email: String, password: String) {
         viewModelScope.launch {
-            val loginResult = userLoginUseCase(email = email, password = password)
+            val loginResponse = userLoginUseCase(email = email, password = password)
 
-            if (loginResult.isSuccess) {
+            if (loginResponse.isSuccess) {
+                _uiEvents.send(
+                    UiEvent.Success
+                )
+            } else if (loginResponse.isFailure) {
+                val exception = loginResponse.exceptionOrNull()
+                exception?.let {
+                    val errorCode = it.errorCode
+                    val stringResource = getApiErrorMessage(errorCode)
 
-            } else if (loginResult.isFailure) {
-
+                    _uiEvents.send(
+                        UiEvent.ShowErrorToTheUser(stringResource)
+                    )
+                }
             }
         }
     }

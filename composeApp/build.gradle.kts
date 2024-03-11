@@ -27,60 +27,74 @@ kotlin {
     ).forEach { iosTarget ->
         iosTarget.binaries.framework {
             baseName = "ComposeApp"
-            isStatic = true
         }
     }
 
     sourceSets {
         val desktopMain by getting
 
-        androidMain.dependencies {
-            implementation(libs.compose.ui.tooling.preview)
-            implementation(libs.androidx.activity.compose)
-            implementation(libs.compose.ui)
-            implementation(libs.ktor.client.okhttp)
-            implementation(libs.koin.android)
-        }
-        commonMain.dependencies {
-            implementation(compose.runtime)
-            implementation(compose.foundation)
-            implementation(compose.material)
-            implementation(compose.ui)
-            @OptIn(ExperimentalComposeLibrary::class)
-            implementation(compose.components.resources)
+        val commonMain by getting {
+            dependencies {
+                implementation(compose.runtime)
+                implementation(compose.foundation)
+                implementation(compose.material)
+                implementation(compose.ui)
+                @OptIn(ExperimentalComposeLibrary::class)
+                implementation(compose.components.resources)
 
-            implementation(libs.ktor.client.core)
-            implementation(libs.ktor.client.content.negotiation)
-            implementation(libs.ktor.serialization.kotlinx.json)
-            implementation(libs.moko.mvvm.core)
-            implementation(libs.moko.mvvm.compose)
-            implementation(libs.kamel)
+                implementation(libs.ktor.client.core)
+                implementation(libs.ktor.client.content.negotiation)
+                implementation(libs.ktor.serialization.kotlinx.json)
+                implementation(libs.moko.mvvm.core)
+                implementation(libs.moko.mvvm.compose)
+                implementation(libs.kamel)
 
-            implementation(libs.koin.core)
-            implementation(libs.koin.compose)
-            implementation(libs.navigation)
+                implementation(libs.koin.core)
+                implementation(libs.koin.compose)
+                implementation(libs.navigation)
 
-            @OptIn(ExperimentalComposeLibrary::class)
-            implementation(compose.components.resources)
-            
-            api(libs.apollo.runtime)
-            implementation(libs.apollo.normalized.cache)
-            implementation(libs.apollo.normalized.cache.sqlite)
-            implementation(libs.voyager.navigation)
-            implementation(libs.voyager.transition)
+                @OptIn(ExperimentalComposeLibrary::class)
+                implementation(compose.components.resources)
+
+                api(libs.apollo.runtime)
+                implementation(libs.apollo.normalized.cache)
+                implementation(libs.apollo.normalized.cache.sqlite)
+                implementation(libs.voyager.navigation)
+                implementation(libs.voyager.transition)
+            }
         }
         desktopMain.dependencies {
             implementation(compose.desktop.currentOs)
             implementation(libs.kotlinx.coroutines.swing)
             implementation(libs.ktor.client.okhttp)
         }
-        iosMain.dependencies {
-            implementation(libs.stately.common) //https://github.com/cashapp/sqldelight/issues/4357 Needed because of this
-            implementation(libs.ktor.client.darwin)
+        val androidMain by getting {
+            dependsOn(commonMain)
+            dependencies {
+                implementation(libs.compose.ui.tooling.preview)
+                implementation(libs.androidx.activity.compose)
+                implementation(libs.compose.ui)
+                implementation(libs.ktor.client.okhttp)
+                implementation(libs.koin.android)
+            }
         }
+        val iosX64Main by getting
+        val iosArm64Main by getting
+        val iosSimulatorArm64Main by getting
+        val iosMain by creating {
+            dependsOn(commonMain)
+            iosX64Main.dependsOn(this)
+            iosArm64Main.dependsOn(this)
+            iosSimulatorArm64Main.dependsOn(this)
+
+            dependencies {
+                implementation(libs.stately.common) //https://github.com/cashapp/sqldelight/issues/4357 Needed because of this
+                implementation(libs.ktor.client.darwin)
+            }
+        }
+
         commonTest.dependencies {
             implementation(libs.kotlin.test)
-            implementation(libs.mockative)
         }
     }
 }
