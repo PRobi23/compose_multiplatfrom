@@ -1,17 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <resources>
-    <string name="error_failed_general">Something went wrong, please try again. If you contact
-        customer support tell them this error code %1$d
-    </string>
-    <string name="error_message_network">Network Error! Please try again later.</string>
-    <string name="login_failed_to_login_message">Sorry, the email or password seems to be wrong</string>
-    <string name="auth_failed_to_login">Failed to login</string>
-    <string name="login">Log in</string>
-    <string name="invalid_password">Passwords must have at least 6 characters</string>
-    <string name="invalid_email">E-mail address is not valid</string>
-    <string name="successful_login">Succesful login, congratulations!</string>
-    <string name="password">Password</string>
-    <string name="email">E-mail</string>
-    <string name="next">Next</string>
-    <string name="welcome">Welcome to Passionflix, enter your details</string>
+    //This string is need to be reached from the manifest
+    <string name="app_name">Multiplatform</string>
 </resources>
