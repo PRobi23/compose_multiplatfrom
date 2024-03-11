@@ -39,7 +39,6 @@ import org.koin.compose.koinInject
 import presentation.screens.common.SuccessfulLoginScreen
 import presentation.viewModels.tv.TvLoginScreenViewModel
 
-
 class TvRegisterScreen : Screen {
 
     @OptIn(ExperimentalResourceApi::class)
@@ -163,5 +162,4 @@ class TvRegisterScreen : Screen {
             }
         }
     }
-
 }
