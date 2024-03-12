@@ -13,7 +13,6 @@ import presentation.screens.tv.TvSplashScreen
 fun main() = application {
     Window(onCloseRequest = ::exitApplication, title = "Multiplatform") {
         val screen = TvSplashScreen()
-        Navigator(screen)
 
         startKoin {
             loadKoinModules(appModule)
