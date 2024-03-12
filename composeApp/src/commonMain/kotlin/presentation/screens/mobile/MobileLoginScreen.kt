@@ -24,12 +24,15 @@ import androidx.compose.ui.unit.dp
 import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.navigator.LocalNavigator
 import cafe.adriel.voyager.navigator.currentOrThrow
-import multiplatform.composeapp.generated.resources.Res
 import core.UiEvent
+import core.ui.components.MagineAlertDialog
+import multiplatform.composeapp.generated.resources.*
+import multiplatform.composeapp.generated.resources.Res
 import multiplatform.composeapp.generated.resources.invalid_password
 import multiplatform.composeapp.generated.resources.login
 import multiplatform.composeapp.generated.resources.password
 import org.jetbrains.compose.resources.ExperimentalResourceApi
+import org.jetbrains.compose.resources.StringResource
 import org.jetbrains.compose.resources.stringResource
 import org.koin.compose.koinInject
 import presentation.screens.common.SuccessfulLoginScreen
@@ -44,12 +47,14 @@ class MobileLoginScreen(private val email: String) : Screen {
         val mobileRegisterScreenViewModel: MobileLoginScreenViewModel = koinInject()
         val uiState by mobileRegisterScreenViewModel.uiState.collectAsState() //HERE USE THE ONE WITH LIFECYCLE IF POSSIBLE
         var openDialog = remember { mutableStateOf(value = false) }
+        var errorResource by remember { mutableStateOf(Res.string.auth_failed_to_login) }
         val navigator = LocalNavigator.currentOrThrow
 
         LaunchedEffect(key1 = true) {
             mobileRegisterScreenViewModel.uiEvents.collect { event ->
                 when (event) {
                     is UiEvent.ShowErrorToTheUser -> {
+                        errorResource = event.resourceId
                         openDialog.value = true
                     }
 
@@ -60,10 +65,21 @@ class MobileLoginScreen(private val email: String) : Screen {
             }
         }
 
+        if (openDialog.value) {
+            MagineAlertDialog(
+                openDialog = openDialog,
+                text = stringResource(errorResource)
+            )
+        }
+
         Column(modifier = Modifier.fillMaxSize()) {
-            Text(
-                modifier = Modifier.padding(start = 16.dp, end = 16.dp),
-                text = email
+
+            OutlinedTextField(
+                value = email,
+                onValueChange = { },
+                shape = RoundedCornerShape(percent = 20),
+                readOnly = true,
+                modifier = Modifier.fillMaxWidth().padding(top = 32.dp, start = 16.dp, end = 16.dp),
             )
             Spacer(modifier = Modifier.height(16.dp))
 
@@ -94,9 +110,11 @@ class MobileLoginScreen(private val email: String) : Screen {
             )
             if (!uiState.isPasswordValid) {
                 Text(
-                    text = stringResource(Res.string.invalid_password), style = TextStyle(
+                    text = stringResource(Res.string.invalid_password),
+                    style = TextStyle(
                         color = Color.Red
-                    )
+                    ),
+                    modifier = Modifier.padding(start = 16.dp, end = 16.dp)
                 )
             }
             Button(

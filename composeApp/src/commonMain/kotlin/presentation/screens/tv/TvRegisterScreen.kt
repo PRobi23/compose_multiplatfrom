@@ -52,12 +52,14 @@ class TvRegisterScreen : Screen {
             var password by remember { mutableStateOf("") }
             var showPassword by remember { mutableStateOf(value = false) }
             var openDialog = remember { mutableStateOf(value = false) }
+            var errorResource by remember { mutableStateOf(Res.string.auth_failed_to_login) }
             val navigator = LocalNavigator.currentOrThrow
 
             LaunchedEffect(key1 = true) {
                 tvRegisterScreenViewModel.uiEvents.collect { event ->
                     when (event) {
                         is UiEvent.ShowErrorToTheUser -> {
+                            errorResource = event.resourceId
                             openDialog.value = true
                         }
 
@@ -71,7 +73,7 @@ class TvRegisterScreen : Screen {
             if (openDialog.value) {
                 MagineAlertDialog(
                     openDialog = openDialog,
-                    text = stringResource(Res.string.auth_failed_to_login)
+                    text = stringResource(errorResource)
                 )
             }
 
@@ -89,7 +91,9 @@ class TvRegisterScreen : Screen {
 
                 OutlinedTextField(
                     value = email,
-                    onValueChange = { email = it },
+                    onValueChange = {
+                        email = it
+                    },
                     shape = RoundedCornerShape(percent = 20),
                     label = { Text("Email") },
                     keyboardOptions = KeyboardOptions(
@@ -110,7 +114,9 @@ class TvRegisterScreen : Screen {
 
                 OutlinedTextField(
                     value = password,
-                    onValueChange = { password = it },
+                    onValueChange = {
+                        password = it
+                    },
                     label = { Text(stringResource(Res.string.password)) },
                     shape = RoundedCornerShape(percent = 20),
                     visualTransformation = if (showPassword) {

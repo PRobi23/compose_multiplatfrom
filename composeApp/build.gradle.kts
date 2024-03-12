@@ -53,9 +53,6 @@ kotlin {
                 implementation(libs.koin.compose)
                 implementation(libs.navigation)
 
-                @OptIn(ExperimentalComposeLibrary::class)
-                implementation(compose.components.resources)
-
                 api(libs.apollo.runtime)
                 implementation(libs.apollo.normalized.cache)
                 implementation(libs.apollo.normalized.cache.sqlite)
