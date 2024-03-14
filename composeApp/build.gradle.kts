@@ -35,8 +35,6 @@ kotlin {
 
         val commonMain by getting {
             dependencies {
-                implementation(libs.compose.ui.tooling.preview)
-
                 implementation(compose.runtime)
                 implementation(compose.foundation)
                 implementation(compose.material)

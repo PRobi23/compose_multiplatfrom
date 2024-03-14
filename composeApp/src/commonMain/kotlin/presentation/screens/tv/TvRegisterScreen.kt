@@ -64,7 +64,7 @@ class TvRegisterScreen : Screen {
                         }
 
                         is UiEvent.Success -> {
-                            navigator.push(SuccessfulLoginScreen())
+                            navigator.push(SuccessfulLoginScreen(isTv = true))
                         }
                     }
                 }

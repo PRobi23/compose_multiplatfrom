@@ -54,7 +54,7 @@ class MobileLoginScreen(private val email: String) : Screen {
                     }
 
                     is UiEvent.Success -> {
-                        navigator.push(SuccessfulLoginScreen())
+                        navigator.push(SuccessfulLoginScreen(isTv = false))
                     }
                 }
             }
