@@ -3,7 +3,7 @@ compose = "1.6.2"
 compose-plugin = "1.6.0"
 compose-compiler = "1.5.4"
 agp = "8.2.2"
-android-minSdk = "24"
+android-minSdk = "21"
 android-compileSdk = "34"
 android-targetSdk = "34"
 androidx-activityCompose = "1.8.2"
@@ -26,6 +26,7 @@ apollo = "4.0.0-alpha.2"
 voyager = "1.0.0"
 mockative = "2.0.1"
 stately = "2.0.5"
+qrose = "1.0.0"
 
 [libraries]
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
@@ -64,6 +65,7 @@ apollo-testing-support = { group = "com.apollographql.apollo3", name = "apollo-t
 voyager-navigation = { module = "cafe.adriel.voyager:voyager-navigator", version.ref = "voyager" }
 voyager-transition = { module = "cafe.adriel.voyager:voyager-transitions", version.ref = "voyager" }
 stately-common = { module = "co.touchlab:stately-common", version.ref = "stately" }
+qrose = { module = "io.github.alexzhirkevich:qrose", version.ref = "qrose" }
 
 [plugins]
 jetbrainsCompose = { id = "org.jetbrains.compose", version.ref = "compose-plugin" }

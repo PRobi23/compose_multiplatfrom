@@ -18,6 +18,7 @@ import multiplatform.composeapp.generated.resources.Res
 import multiplatform.composeapp.generated.resources.tv_splash_bg
 import org.jetbrains.compose.resources.ExperimentalResourceApi
 import org.jetbrains.compose.resources.painterResource
+import presentation.screens.tv.TvQRCodeScreen
 
 class TvSplashScreen : Screen {
     @OptIn(ExperimentalResourceApi::class)
@@ -25,16 +26,6 @@ class TvSplashScreen : Screen {
     override fun Content() {
         var isPerformingTask by remember { mutableStateOf(true) }
         val navigator = LocalNavigator.currentOrThrow
-
-        val infiniteTransition = rememberInfiniteTransition()
-        val angle by infiniteTransition.animateFloat(
-            initialValue = 0f,
-            targetValue = 360f,
-            animationSpec = infiniteRepeatable(
-                animation = tween(durationMillis = 2000, easing = LinearEasing),
-                repeatMode = RepeatMode.Restart
-            )
-        )
 
         MaterialTheme {
             Box(
@@ -45,7 +36,7 @@ class TvSplashScreen : Screen {
                 Image(
                     painter = painterResource(Res.drawable.tv_splash_bg),
                     contentDescription = null,
-                    modifier = Modifier.fillMaxSize().rotate(angle)
+                    modifier = Modifier.fillMaxSize()
                 )
             }
 
@@ -57,13 +48,9 @@ class TvSplashScreen : Screen {
 
             LaunchedEffect(key1 = isPerformingTask) {
                 if (!isPerformingTask) {
-                    val screen = TvRegisterScreen()
+                    val screen = TvQRCodeScreen()
                     navigator.push(screen)
                 }
-            }
-
-            if (isPerformingTask) {
-                Text("Performing some tasks. Please wait!")
             }
         }
     }

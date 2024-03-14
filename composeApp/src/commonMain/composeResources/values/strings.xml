@@ -14,4 +14,15 @@
     <string name="email">E-mail</string>
     <string name="next">Next</string>
     <string name="welcome">Welcome to Passionflix, enter your details</string>
+    <string name="back">Back</string>
+    <string name="qrTitle">Access via mobile phone or computer</string>
+    <string name="qrSteps">Follow these steps</string>
+    <string name="qrStepOne">Step 1:</string>
+    <string name="qrStepOneDesc">Scan the qr code or open the link inside your browser</string>
+    <string name="qrStepTwo">Step 2:</string>
+    <string name="qrStepTwoDesc">Enter Sign in Code</string>
+    <string name="qrStepThree">Step 3:</string>
+    <string name="qrStepThreeDesc">Sign in to Magine Pro. Your TV will be ready to watch!</string>
+    <string name="qrToSignInActivity">Log in from TV</string>
+    <string name="qrToRegisterActivity">Sign up from TV</string>
 </resources>
