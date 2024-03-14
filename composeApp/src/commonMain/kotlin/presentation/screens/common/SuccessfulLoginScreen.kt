@@ -2,32 +2,48 @@ package presentation.screens.common
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material.Text
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
-import multiplatform.composeapp.generated.resources.Res
-import androidx.compose.ui.unit.sp
+import androidx.compose.ui.unit.dp
 import cafe.adriel.voyager.core.screen.Screen
-import multiplatform.composeapp.generated.resources.successful_login
-import org.jetbrains.compose.resources.ExperimentalResourceApi
-import org.jetbrains.compose.resources.stringResource
+import presentation.components.MoviesList
 
 class SuccessfulLoginScreen : Screen {
 
-    @OptIn(ExperimentalResourceApi::class)
     @Composable
     override fun Content() {
-        Column(modifier = Modifier.fillMaxSize()) {
-            Text(
-                modifier = Modifier.fillMaxSize(),
-                text = stringResource(Res.string.successful_login),
-                style = TextStyle(
-                    textAlign = TextAlign.Center,
-                    fontSize = 26.sp
-                )
-            )
+        MaterialTheme {
+            Column(modifier = Modifier.fillMaxSize()) {
+                Surface(
+                    modifier = Modifier.fillMaxSize(),
+                    color = MaterialTheme.colors.background
+                ) {
+                    Scaffold(
+                        topBar = {
+                            TopAppBar(backgroundColor = Color.Cyan,
+                                title = {
+                                    Text(
+                                        text = "Magine Pro",
+                                        modifier = Modifier.fillMaxWidth(),
+                                        textAlign = TextAlign.Center,
+                                        color = Color.White
+                                    )
+                                }
+                            )
+                        }
+                    ) {
+                        MoviesList(
+                            modifier = Modifier.height(250.dp).fillMaxWidth(),
+                            title = "Favourites"
+                        )
+                    }
+                }
+            }
         }
     }
 }

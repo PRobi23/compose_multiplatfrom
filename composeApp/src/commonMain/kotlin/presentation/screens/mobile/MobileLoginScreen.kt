@@ -27,12 +27,7 @@ import cafe.adriel.voyager.navigator.currentOrThrow
 import core.UiEvent
 import core.ui.components.MagineAlertDialog
 import multiplatform.composeapp.generated.resources.*
-import multiplatform.composeapp.generated.resources.Res
-import multiplatform.composeapp.generated.resources.invalid_password
-import multiplatform.composeapp.generated.resources.login
-import multiplatform.composeapp.generated.resources.password
 import org.jetbrains.compose.resources.ExperimentalResourceApi
-import org.jetbrains.compose.resources.StringResource
 import org.jetbrains.compose.resources.stringResource
 import org.koin.compose.koinInject
 import presentation.screens.common.SuccessfulLoginScreen
