@@ -165,6 +165,15 @@ class TvRegisterScreen : Screen {
                 ) {
                     Text(text = stringResource(Res.string.login))
                 }
+
+                Button(
+                    onClick = {
+                        navigator.push(TvQRCodeScreen())
+                    },
+                    modifier = Modifier.fillMaxWidth()
+                ) {
+                    Text(text = stringResource(Res.string.back))
+                }
             }
         }
     }

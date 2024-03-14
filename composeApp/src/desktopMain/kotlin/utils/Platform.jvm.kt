@@ -1,7 +1,5 @@
 package utils
 
-class JVMPlatform : Platform {
-    override val name: String = "Java ${System.getProperty("java.version")}"
-}
-
-actual fun getPlatform(): Platform = JVMPlatform()
+actual fun getPlatform(): String = "android"
+actual fun getDeviceModel(): String = "Desktop"
+actual fun getDeviceVendor(): String = System.getProperty("os.name")

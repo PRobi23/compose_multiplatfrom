@@ -1,7 +1,7 @@
 package utils
 
-interface Platform {
-    val name: String
-}
+expect fun getPlatform(): String
 
-expect fun getPlatform(): Platform
+expect fun getDeviceModel(): String
+
+expect fun getDeviceVendor(): String

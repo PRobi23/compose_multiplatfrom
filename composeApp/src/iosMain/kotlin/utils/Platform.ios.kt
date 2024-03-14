@@ -4,11 +4,9 @@ import platform.UIKit.UIDevice
 import di.appModule
 import org.koin.core.context.startKoin
 
-class IOSPlatform : Platform {
-    override val name: String = UIDevice.currentDevice.systemName() + " " + UIDevice.currentDevice.systemVersion
-}
-
-actual fun getPlatform(): Platform = IOSPlatform()
+actual fun getPlatform(): String = "ios"
+actual fun getDeviceModel(): String = UIDevice.currentDevice.model
+actual fun getDeviceVendor(): String = "Apple"
 
 fun initKoin() {
     startKoin {

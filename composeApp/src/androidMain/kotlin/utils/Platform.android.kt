@@ -2,8 +2,6 @@ package utils
 
 import android.os.Build
 
-class AndroidPlatform : Platform {
-    override val name: String = "Android ${Build.VERSION.SDK_INT}"
-}
-
-actual fun getPlatform(): Platform = AndroidPlatform()
+actual fun getPlatform(): String = "android"
+actual fun getDeviceModel(): String = Build.MODEL
+actual fun getDeviceVendor(): String = Build.BRAND

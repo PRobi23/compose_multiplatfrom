@@ -4,14 +4,17 @@ import MobileLoginScreenViewModel
 import data.repository.AuthenticationRepositoryImpl
 import domain.repositories.AuthenticationRepository
 import domain.useCases.EmailValidatorUseCase
+import domain.useCases.FetchQRCodeUseCase
 import domain.useCases.PasswordValidatorUseCase
 import domain.useCases.UserLoginUseCase
+import domain.useCases.VerifyUserIdUseCase
 import io.ktor.client.*
 import io.ktor.client.plugins.cookies.*
 import io.ktor.serialization.kotlinx.json.*
 import kotlinx.serialization.json.Json
 import org.koin.dsl.module
 import presentation.viewModels.mobile.MobileFillInEmailScreenViewModel
+import presentation.viewModels.tv.QRCodeScreenViewModel
 import presentation.viewModels.tv.TvLoginScreenViewModel
 
 
@@ -19,6 +22,8 @@ val appModule = module {
     //Use cases
     factory { EmailValidatorUseCase() }
     factory { UserLoginUseCase(authenticationRepository = get()) }
+    factory { FetchQRCodeUseCase(authenticationRepository = get()) }
+    factory { VerifyUserIdUseCase(authenticationRepository = get()) }
     factory { PasswordValidatorUseCase() }
 
     //Data layer
@@ -54,6 +59,13 @@ val appModule = module {
             userLoginUseCase = get(),
             passwordValidatorUseCase = get(),
             emailValidatorUseCase = get()
+        )
+    }
+
+    viewModelDefinition {
+        QRCodeScreenViewModel(
+            fetchQRCodeUseCase = get(),
+            verifyUserIdCodeUseCase = get()
         )
     }
 }
