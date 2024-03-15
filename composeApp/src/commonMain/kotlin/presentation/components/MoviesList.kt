@@ -1,30 +1,36 @@
 package presentation.components
 
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
-import androidx.compose.material.Card
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import cafe.adriel.voyager.navigator.LocalNavigator
+import cafe.adriel.voyager.navigator.currentOrThrow
 import domain.model.Movie
-import multiplatform.composeapp.generated.resources.*
-import org.jetbrains.compose.resources.ExperimentalResourceApi
-import org.jetbrains.compose.resources.painterResource
+import presentation.screens.common.DetailsScreen
 
-@OptIn(ExperimentalResourceApi::class)
 @Composable
-fun MoviesList(modifier: Modifier, title: String, cardHeight: Dp, movies: List<Movie>) {
-
-    //this should come ideally from the VM
+fun MoviesList(
+    modifier: Modifier,
+    title: String,
+    cardHeight: Dp,
+    movies: List<Movie>,
+    textSize: TextUnit = 10.sp,
+    isTv: Boolean
+) {
+    val navigator = LocalNavigator.currentOrThrow
 
     Column(modifier = modifier) {
         Text(
@@ -36,39 +42,10 @@ fun MoviesList(modifier: Modifier, title: String, cardHeight: Dp, movies: List<M
             )
         )
         LazyRow {
-            items(movies) { item ->
-                Card(
-                    modifier = Modifier
-                        .padding(8.dp)
-                        .width(120.dp),
-                    elevation = 6.dp
-                )
-                {
-                    Column(
-                        modifier = Modifier
-                            .padding(8.dp)
-                            .height(cardHeight + 65.dp)
-                            .fillMaxHeight(),
-                        horizontalAlignment = Alignment.CenterHorizontally
-                    ) {
-                        Image(
-                            painter = item.image,
-                            contentDescription = "img",
-                            modifier = Modifier
-                                .height(cardHeight)
-                                .width(cardHeight)
-                                .padding(5.dp),
-
-                            alignment = Alignment.Center
-                        )
-                        Spacer(modifier = Modifier.height(5.dp))
-                        Text(
-                            text = item.title,
-                            modifier = Modifier.padding(4.dp).wrapContentHeight(),
-                            color = Color.Black, textAlign = TextAlign.Center
-                        )
-                    }
-                }
+            items(movies) { movie ->
+                MovieItem(modifier = Modifier.clickable {
+                    navigator.push(DetailsScreen(movie = movie))
+                }, movie = movie, cardHeight = cardHeight, textSize = textSize)
             }
         }
     }
