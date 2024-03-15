@@ -8,8 +8,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import cafe.adriel.voyager.navigator.Navigator
 import cafe.adriel.voyager.transitions.SlideTransition
 import com.magine.multiplatform.isTv
+import presentation.screens.common.SuccessfulLoginScreen
 import presentation.screens.mobile.MobileSplashScreen
-import presentation.screens.tv.TvRegisterScreen
 import presentation.screens.tv.TvSplashScreen
 
 class MainActivity : ComponentActivity() {
@@ -32,6 +32,16 @@ class MainActivity : ComponentActivity() {
 
 @Preview
 @Composable
-fun RegisterScreenTvPreview() {
-    TvRegisterScreen()
+fun MoviesListTvPreview() {
+    SuccessfulLoginScreen(
+        isTv = true
+    ).Content()
+}
+
+@Preview
+@Composable
+fun MoviesListMobilePreview() {
+    SuccessfulLoginScreen(
+        isTv = false
+    ).Content()
 }
