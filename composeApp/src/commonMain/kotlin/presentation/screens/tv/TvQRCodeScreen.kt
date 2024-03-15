@@ -96,7 +96,7 @@ class TvQRCodeScreen: Screen {
             qrCodeScreenViewModel.uiEvents.collect { event ->
                 when (event) {
                     is UiEvent.Success -> {
-                        navigator.push(SuccessfulLoginScreen())
+                        navigator.push(SuccessfulLoginScreen(isTv = true))
                     }
 
                     is UiEvent.ShowErrorToTheUser -> {}
