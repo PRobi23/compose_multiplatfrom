@@ -62,7 +62,7 @@ kotlin {
                 implementation("io.github.alexzhirkevich:qrose:1.0.0") {
                     exclude(group = "io.github.alexzhirkevich", module = "qrose-core-android")
                 }
-                api(libs.compose.multiplatform.webview)
+
             }
         }
         desktopMain.dependencies {
