@@ -2,23 +2,15 @@ package presentation.viewModels.tv
 
 import core.UiEvent
 import dev.icerock.moko.mvvm.viewmodel.ViewModel
-import domain.model.LoginResponse
 import domain.model.QrCodeResponse
 import domain.model.VerifyUserIdResponse
-import domain.useCases.EmailValidatorUseCase
 import domain.useCases.FetchQRCodeUseCase
-import domain.useCases.PasswordValidatorUseCase
-import domain.useCases.UserLoginUseCase
 import domain.useCases.VerifyUserIdUseCase
-import io.kamel.core.Resource
 import kotlinx.coroutines.channels.Channel
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.receiveAsFlow
-import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
-import presentation.screens.common.SuccessfulLoginScreen
 
 
 class QRCodeScreenViewModel(
