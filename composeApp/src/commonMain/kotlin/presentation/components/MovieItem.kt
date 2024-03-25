@@ -1,12 +1,3 @@
-/*
- * ECAS Software
- * Copyright (c) 2024 European Commission
- * Licensed under the EUPL
- * You may not use this work except in compliance with the Licence.
- * You may obtain a copy of the Licence at:
- * http://ec.europa.eu/idabc/eupl
- */
-
 package presentation.components
 
 import androidx.compose.foundation.Image
