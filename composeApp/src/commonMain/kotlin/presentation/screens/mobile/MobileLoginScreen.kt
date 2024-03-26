@@ -48,7 +48,7 @@ class MobileLoginScreen(private val email: String) : Screen {
         LaunchedEffect(key1 = true) {
             mobileRegisterScreenViewModel.uiEvents.collect { event ->
                 when (event) {
-                    is UiEvent.ShowErrorToTheUser -> {
+                    is UiEvent.ShowMessageToTheUser -> {
                         errorResource = event.resourceId
                         openDialog.value = true
                     }

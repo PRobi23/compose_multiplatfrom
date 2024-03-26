@@ -59,7 +59,7 @@ class TvLoginScreenViewModel(
                     val stringResource = getApiErrorMessage(errorCode)
 
                     _uiEvents.send(
-                        UiEvent.ShowErrorToTheUser(stringResource)
+                        UiEvent.ShowMessageToTheUser(stringResource)
                     )
                 }
             }

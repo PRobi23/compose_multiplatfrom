@@ -58,7 +58,7 @@ class TvRegisterScreen : Screen {
             LaunchedEffect(key1 = true) {
                 tvRegisterScreenViewModel.uiEvents.collect { event ->
                     when (event) {
-                        is UiEvent.ShowErrorToTheUser -> {
+                        is UiEvent.ShowMessageToTheUser -> {
                             errorResource = event.resourceId
                             openDialog.value = true
                         }

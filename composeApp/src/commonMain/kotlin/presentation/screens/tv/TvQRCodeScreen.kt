@@ -99,7 +99,7 @@ class TvQRCodeScreen: Screen {
                         navigator.push(SuccessfulLoginScreen(isTv = true))
                     }
 
-                    is UiEvent.ShowErrorToTheUser -> {}
+                    is UiEvent.ShowMessageToTheUser -> {}
                 }
             }
         }

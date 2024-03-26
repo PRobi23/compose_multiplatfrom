@@ -26,8 +26,10 @@
     <string name="qrToSignInActivity">Log in from TV</string>
     <string name="qrToRegisterActivity">Sign up from TV</string>
 
-    <plurals name="start_page_feature_show_seasons">
-        <item quantity="one">%d season</item>
-        <item quantity="other">%d seasons</item>
-    </plurals>
+    <!--Details page-->
+    <string name="viewable_tv_view_action_restart">Restart</string>
+    <string name="tv_viewable_view_action_schedule">Schedule</string>
+    <string name="tv_viewable_view_action_continue_watching">Continue watching</string>
+    <string name="tv_viewable_view_action_play">Play</string>
+    
 </resources>

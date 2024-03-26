@@ -12,7 +12,7 @@ import domain.model.viewableInterface.ViewableInterface
 import presentation.helpers.compose.calculateMaxHeight
 import presentation.model.DetailViewMetadataType
 import presentation.util.MagineBodyText
-import presentation.util.md_theme_light_onPrimary
+import presentation.util.themePrimaryTint0
 
 @Composable
 fun MovieExtraInfo(viewable: ViewableInterface) {
@@ -52,13 +52,13 @@ fun MovieExtraInfo(viewable: ViewableInterface) {
                                 text = "$header:",
                                 style = typography.MagineBodyText.copy(
                                     fontWeight = FontWeight.Bold,
-                                    color = md_theme_light_onPrimary,
+                                    color = themePrimaryTint0,
                                 ),
                             )
                             Text(
                                 text = value,
                                 style = typography.MagineBodyText.copy(
-                                    color = md_theme_light_onPrimary
+                                    color = themePrimaryTint0
                                 ),
                                 modifier = Modifier.weight(1f),
                             )

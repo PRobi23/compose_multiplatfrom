@@ -11,5 +11,5 @@ sealed interface UiEvent {
     data object Success : UiEvent
 
     @OptIn(ExperimentalResourceApi::class)
-    data class ShowErrorToTheUser(val resourceId: StringResource) : UiEvent
+    data class ShowMessageToTheUser(val resourceId: StringResource) : UiEvent
 }
