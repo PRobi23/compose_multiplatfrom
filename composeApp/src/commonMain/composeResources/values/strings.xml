@@ -32,4 +32,16 @@
     <string name="tv_viewable_view_action_continue_watching">Continue watching</string>
     <string name="tv_viewable_view_action_play">Play</string>
     
+    <!-- SHOWS -->
+    <string name="details_page_seasons">Seasons</string>
+    <string name="details_page_season_row">Season %d</string>
+
+    <string name="tv_viewable_view_action_related_contents">Related contents</string>
+    <string name="tv_viewable_view_action_read_more">Read More</string>
+    <string name="viewable_live_event_airing_at">Airing at</string>
+    <string name="viewable_live_event_today">Today</string>
+    <string name="viewable_live_event_live_ended">LIVE ended</string>
+    <string name="viewable_live_event_live">LIVE</string>
+    
+
 </resources>

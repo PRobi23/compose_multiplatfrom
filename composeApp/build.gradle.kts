@@ -58,7 +58,7 @@ kotlin {
                 implementation(libs.apollo.normalized.cache.sqlite)
                 implementation(libs.voyager.navigation)
                 implementation(libs.voyager.transition)
-                implementation(libs.compose.ui.tooling.multiplatform.preview)
+                implementation(libs.kotlinx.datetime)
 
                 implementation("io.github.alexzhirkevich:qrose:1.0.0") {
                     exclude(group = "io.github.alexzhirkevich", module = "qrose-core-android")

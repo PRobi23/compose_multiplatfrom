@@ -33,9 +33,9 @@ class TvDetailsScreen : Screen {
     @OptIn(ExperimentalResourceApi::class)
     @Composable
     override fun Content() {
-        val viewableViewModel: TvViewableViewModel = koinInject()
+        val tvDetailsScreenViewModel: TvViewableViewModel = koinInject()
 
-        val uiState = viewableViewModel.state.collectAsState().value
+        val uiState = tvDetailsScreenViewModel.state.collectAsState().value
         //viewableViewModel.initSchedule(ChannelScheduleView.DAYS_IN_SCHEDULE)
         var previewSize: List<String> = emptyList()
 
@@ -64,7 +64,7 @@ class TvDetailsScreen : Screen {
                 }
 
                 LaunchedEffect(key1 = true) {
-                    viewableViewModel.uiEvents.collect { event ->
+                    tvDetailsScreenViewModel.uiEvents.collect { event ->
                         when (event) {
                             is UiEvent.ShowMessageToTheUser -> {
                                 snackbarHostState.showSnackbar(
@@ -120,7 +120,7 @@ class TvDetailsScreen : Screen {
                                     .focusable(),
                                 state = uiState,
                                 collapseMovieDetails = collapseMovieDetails,
-                                viewModel = viewableViewModel,
+                                viewModel = tvDetailsScreenViewModel
                             )
                         }
                     }

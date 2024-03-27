@@ -8,6 +8,10 @@ import domain.useCases.FetchQRCodeUseCase
 import domain.useCases.PasswordValidatorUseCase
 import domain.useCases.UserLoginUseCase
 import domain.useCases.VerifyUserIdUseCase
+import domain.util.DateTimeProvider
+import domain.util.DateTimeUtils
+import domain.util.KotlinDateTimeProvider
+import domain.util.KotlinDateTimeUtils
 import io.ktor.client.*
 import io.ktor.client.plugins.cookies.*
 import io.ktor.serialization.kotlinx.json.*
@@ -25,6 +29,9 @@ val appModule = module {
     factory { FetchQRCodeUseCase(authenticationRepository = get()) }
     factory { VerifyUserIdUseCase(authenticationRepository = get()) }
     factory { PasswordValidatorUseCase() }
+    factory<DateTimeProvider> { KotlinDateTimeProvider() }
+    factory<DateTimeUtils> { KotlinDateTimeUtils() }
+
 
     //Data layer
     single<HttpClient> {

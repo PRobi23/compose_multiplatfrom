@@ -27,7 +27,10 @@ voyager = "1.0.0"
 mockative = "2.0.1"
 stately = "2.0.5"
 qrose = "1.0.0"
+
+#it looks like tvMaterial only will work with android app.https://github.com/JetBrains/compose-multiplatform/issues/3125
 tvMaterial = "1.0.0-alpha10"
+kotlinx-date-time = "0.6.0-RC.2"
 
 [libraries]
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
@@ -36,10 +39,9 @@ kotlinx-coroutines-swing = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 compose-ui = { module = "androidx.compose.ui:ui", version.ref = "compose" }
 compose-ui-tooling = { module = "androidx.compose.ui:ui-tooling", version.ref = "compose" }
-compose-ui-tooling-preview = { module = "androidx.compose.ui:ui-tooling-preview", version.ref = "compose" }
-compose-ui-tooling-multiplatform-preview = { module = "androidx.compose.ui:ui-tooling-preview", version.ref = "compose" }
 compose-foundation = { module = "androidx.compose.foundation:foundation", version.ref = "compose" }
 compose-material = { module = "androidx.compose.material:material", version.ref = "compose" }
+compose-ui-tooling-preview = {module = "androidx.compose.ui:ui-tooling-preview", version.ref = "compose"}
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "androidx-core-ktx" }
 androidx-test-junit = { group = "androidx.test.ext", name = "junit", version.ref = "androidx-test-junit" }
 androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "androidx-espresso-core" }
@@ -69,6 +71,7 @@ voyager-transition = { module = "cafe.adriel.voyager:voyager-transitions", versi
 stately-common = { module = "co.touchlab:stately-common", version.ref = "stately" }
 qrose = { module = "io.github.alexzhirkevich:qrose", version.ref = "qrose" }
 androidx-tv-material = { group = "androidx.tv", name = "tv-material", version.ref = "tvMaterial" }
+kotlinx-datetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version.ref = "kotlinx-date-time" }
 
 [plugins]
 jetbrainsCompose = { id = "org.jetbrains.compose", version.ref = "compose-plugin" }

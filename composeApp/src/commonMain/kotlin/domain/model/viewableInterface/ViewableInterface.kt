@@ -249,4 +249,17 @@ sealed class ViewableInterface {
             return ""
         }
     }
+
+
+    @Serializable
+    data class Collection(
+        @Transient
+        @SerialName("__typename")
+        var typeName: String = "",
+        @Transient
+        var magineId: String = "",
+        @Transient
+        var title: String? = null,
+        var viewables: Viewables,
+    )
 }
