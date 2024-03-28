@@ -25,6 +25,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
+import org.jetbrains.compose.resources.ExperimentalResourceApi
 import org.jetbrains.compose.resources.stringResource
 import presentation.model.MoviesTabItem
 import presentation.model.ReadMoreTabItem
@@ -32,18 +33,17 @@ import presentation.model.SeasonTabItem
 import presentation.model.getTabItems
 import presentation.util.MagineBodyText
 import presentation.util.themePrimary
+import presentation.util.themePrimaryTint0
 import presentation.viewModels.tv.ViewableViewState
 import kotlin.time.Duration
 
 @OptIn(
-    ExperimentalComposeUiApi::class,
+    ExperimentalComposeUiApi::class, ExperimentalResourceApi::class,
 )
 @Composable
 fun TabItemsContent(
     modifier: Modifier = Modifier,
     viewableViewState: ViewableViewState.Ready,
-    calculateRemainingTimePercentage: (Duration, Duration, Duration) -> Float,
-    calculateMinutesLeft: (Duration, Duration) -> Long,
     resetFocus: Boolean,
 ) {
     var selectedTabIndex by remember { mutableIntStateOf(0) }
@@ -91,7 +91,7 @@ fun TabItemsContent(
                                     style = typography.MagineBodyText.copy(
                                         fontWeight = if (selectedTabIndex == index) FontWeight.Bold else FontWeight.Normal,
                                         textDecoration = if (focusedTabIndex == index) TextDecoration.Underline else TextDecoration.None,
-                                        color = Color(context.partnerTheme.themePrimaryTint0),
+                                        color = themePrimaryTint0,
                                     ),
                                 )
                             }
@@ -108,8 +108,6 @@ fun TabItemsContent(
                         .padding(start = 30.dp, end = 30.dp),
                     relatedContents = item.relatedContents,
                     curatedContents = item.curatedContents,
-                    calculateRemainingTimePercentage = calculateRemainingTimePercentage,
-                    calculateMinutesLeft = calculateMinutesLeft,
                 )
 
                 is ReadMoreTabItem -> ReadMoreTabItemContent(

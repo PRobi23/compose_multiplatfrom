@@ -38,7 +38,7 @@ fun ExtendedMovieDetails(
     modifier: Modifier = Modifier,
     state: ViewableViewState.Ready,
     collapseMovieDetails: Boolean,
-    viewModel: TvViewableViewModel
+    viewModel: TvViewableViewModel,
 ) {
     state.viewable?.let { viewable ->
         Content(
@@ -80,8 +80,6 @@ private fun Content(
                 ButtonSection(
                     viewable = viewable,
                     isTrailerButtonVisible = isTrailerButtonVisible,
-                    addToWatchList = viewModel::addToWatchlist,
-                    removeFromWatchList = viewModel::removeFromWatchlist,
                 )
             }
         }
@@ -161,8 +159,6 @@ private fun MovieDescription(description: String) {
 private fun ButtonSection(
     viewable: ViewableInterface,
     isTrailerButtonVisible: Boolean,
-    addToWatchList: () -> Unit,
-    removeFromWatchList: () -> Unit
 ) {
     val iconState = remember {
         mutableStateOf(
@@ -233,10 +229,8 @@ private fun ButtonSection(
         onClick = {
             viewable.checkWatchList()?.let {
                 if (it) {
-                    removeFromWatchList()
                     iconState.value = Res.drawable.ic_watchlist_add
                 } else {
-                    addToWatchList()
                     iconState.value = Res.drawable.ic_watchlist_check
                 }
             }

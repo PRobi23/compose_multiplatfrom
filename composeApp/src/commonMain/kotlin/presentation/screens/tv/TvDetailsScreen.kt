@@ -1,5 +1,6 @@
 package presentation.screens.tv
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.focusable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -15,7 +16,6 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.graphics.TileMode
-import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import cafe.adriel.voyager.core.screen.Screen
 import core.UiEvent
@@ -24,6 +24,7 @@ import multiplatform.composeapp.generated.resources.qrToRegisterActivity
 import org.jetbrains.compose.resources.ExperimentalResourceApi
 import org.koin.compose.koinInject
 import presentation.components.ExtendedMovieDetails
+import presentation.components.TabItemsContent
 import presentation.util.primary
 import presentation.viewModels.tv.TvViewableViewModel
 import presentation.viewModels.tv.ViewableViewState
@@ -47,12 +48,6 @@ class TvDetailsScreen : Screen {
                 SharedPreferencesHelper.getPreviewSize(context)?.let {
                     previewSize = listOf(it.max(), it.min())
                 }
-                val (_, imagePainter) = loadImage(
-                    url = uiState.viewable?.backgroundImage,
-                    crop = false,
-                    widthPx = previewSize[0].toInt(),
-                    heightPx = previewSize[1].toInt(),
-                )
                 */
 
                 var collapseMovieDetails by remember { mutableStateOf(false) }
@@ -86,10 +81,6 @@ class TvDetailsScreen : Screen {
                             modifier = Modifier
                                 .fillMaxSize()
                                 .padding(innerPadding)
-                                .paint(
-                                    imagePainter,
-                                    contentScale = ContentScale.FillBounds,
-                                )
                                 .background(
                                     if (collapseMovieDetails) {
                                         createGradientBrush(
@@ -121,6 +112,16 @@ class TvDetailsScreen : Screen {
                                 state = uiState,
                                 collapseMovieDetails = collapseMovieDetails,
                                 viewModel = tvDetailsScreenViewModel
+                            )
+                            TabItemsContent(
+                                viewableViewState = uiState,
+                                modifier = Modifier
+                                    .onFocusChanged {
+                                        if (it.hasFocus) {
+                                            collapseMovieDetails = true
+                                        }
+                                    },
+                                resetFocus = collapseMovieDetails, // If the tab items are collapsed then reset the focus
                             )
                         }
                     }

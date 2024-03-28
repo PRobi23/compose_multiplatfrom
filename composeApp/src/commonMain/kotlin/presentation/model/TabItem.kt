@@ -4,30 +4,32 @@ package presentation.model
 
 import domain.model.viewableInterface.*
 import multiplatform.composeapp.generated.resources.Res
+import multiplatform.composeapp.generated.resources.details_page_seasons
+import multiplatform.composeapp.generated.resources.tv_viewable_view_action_read_more
+import multiplatform.composeapp.generated.resources.tv_viewable_view_action_related_contents
 import org.jetbrains.compose.resources.ExperimentalResourceApi
-import org.jetbrains.compose.resources.Resource
-import org.jetbrains.compose.resources.stringResource
+import org.jetbrains.compose.resources.StringResource
 
 sealed interface TabItem {
-    val textResourceId: Resource?
+    val textResourceId: StringResource?
     val title: String?
 }
 
 data class SeasonTabItem(
-    override val textResourceId: Resource? = null,
+    override val textResourceId: StringResource? = null,
     override val title: String? = null,
     val seasons: List<Season>,
 ) : TabItem
 
 data class MoviesTabItem(
-    override val textResourceId: Resource? = null,
+    override val textResourceId: StringResource? = null,
     override val title: String? = null,
     val relatedContents: List<ViewableInterface>? = null,
     val curatedContents: ViewableInterface.Collection? = null,
 ) : TabItem
 
 data class ReadMoreTabItem(
-    override val textResourceId: Resource? = null,
+    override val textResourceId: StringResource? = null,
     override val title: String? = null,
     val data: ReadMoreTabItemData,
 ) : TabItem
@@ -40,7 +42,7 @@ fun getTabItems(viewable: ViewableInterface): List<TabItem> {
         ) {
             this.add(
                 SeasonTabItem(
-                    textResourceId = Res.string.tv_viewable_view_action_seasons,
+                    textResourceId = Res.string.details_page_seasons,
                     seasons = viewable.seasons ?: emptyList(),
                 ),
             )

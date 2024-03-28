@@ -8,6 +8,8 @@ import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.receiveAsFlow
+import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.launch
 
 class TvViewableViewModel : ViewModel() {
 
@@ -17,6 +19,14 @@ class TvViewableViewModel : ViewModel() {
     private val _uiEvents = Channel<UiEvent>()
     val uiEvents = _uiEvents.receiveAsFlow()
 
+    fun fetchViewable(magineId: String) {
+        viewModelScope.launch {
+            _state.update { _ ->
+                //MOCK
+                ViewableViewState.Ready()
+            }
+        }
+    }
 }
 
 sealed interface ViewableViewState {

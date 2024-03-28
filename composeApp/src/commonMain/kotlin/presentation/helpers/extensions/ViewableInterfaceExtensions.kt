@@ -2,6 +2,7 @@ package presentation.helpers.extensions
 
 import domain.model.viewableInterface.Broadcast
 import domain.model.viewableInterface.ViewableInterface
+import multiplatform.composeapp.generated.resources.Res
 
 /**
  * In this file we have the extensions to map values and show in the UI.
@@ -108,5 +109,34 @@ fun ViewableInterface.resolveSubtitle(): String =
 
         else -> ""
     }
+
+fun ViewableInterface?.getTitle(): String {
+    return if (this is ViewableInterface.VideoViewable.Episode) {
+        safeJoinToString(
+            listOf(
+                "",
+                this.title,
+            ),
+            " | ",
+        )
+    } else {
+        this?.title
+    } ?: ""
+}
+
+val ViewableInterface.sixteenNineImage: String?
+    get() = when (this) {
+        is ViewableInterface.VideoViewable -> headerImage
+        is ViewableInterface.Show -> headerImage
+        else -> null
+    }
+
+val ViewableInterface.backgroundImage: String
+    get() = when (this) {
+        is ViewableInterface.VideoViewable -> headerImage
+        is ViewableInterface.Show -> headerImage
+        is ViewableInterface.Channel -> broadcastsFromLive?.firstOrNull()?.image
+        else -> image
+    } ?: ""
 
 

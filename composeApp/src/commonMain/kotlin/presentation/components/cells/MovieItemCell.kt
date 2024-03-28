@@ -1,47 +1,45 @@
 package presentation.components
 
 import androidx.compose.foundation.BorderStroke
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.focusable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Card
 import androidx.compose.material.LinearProgressIndicator
 import androidx.compose.material.MaterialTheme.typography
 import androidx.compose.material.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalDensity
-import androidx.compose.ui.text.style.LineHeightStyle
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import domain.model.viewableInterface.ViewableInterface
 import domain.model.viewableInterface.getWatchedPercentage
 import io.kamel.image.KamelImage
 import multiplatform.composeapp.generated.resources.Res
+import multiplatform.composeapp.generated.resources.viewable_live_event_airing_at
 import org.jetbrains.compose.resources.ExperimentalResourceApi
 import org.jetbrains.compose.resources.stringResource
 import presentation.helpers.compose.Constants
 import presentation.helpers.compose.loadImage
+import presentation.helpers.extensions.getTitle
 import presentation.util.MagineSmallText
 import presentation.util.themePrimary
 import presentation.util.themePrimaryTint0
-import kotlin.time.Duration
 
+@OptIn(ExperimentalResourceApi::class)
 @Composable
 internal fun MovieItemCell(
     modifier: Modifier = Modifier,
     imageUrl: String?,
-    navigateToDetails: (viewable: ViewableInterface) -> Unit,
     imageType: String,
     viewable: ViewableInterface,
-    calculateRemainingTimePercentage: (Duration, Duration, Duration) -> Float,
-    calculateMinutesLeft: (Duration, Duration) -> Long,
 ) {
 
     val height = if (imageType == Constants.SixteenNineCollection) 100.dp else 144.dp
@@ -70,9 +68,6 @@ internal fun MovieItemCell(
                     }
             }
             .focusable()
-            .clickable {
-                navigateToDetails(viewable)
-            },
     ) {
         Card(
             Modifier
@@ -102,11 +97,12 @@ internal fun MovieItemCell(
                                         .padding(10.dp)
 
                                 ) {
-                                    Image(
-                                        painter = rememberAsyncImagePainter(R.drawable.shape_channel_logo_bg),
-                                        contentDescription = null,
-                                        modifier = Modifier.size(32.dp),
-                                    )
+
+                                    /*  Image(
+                                          painter = painterResource(Res.drawable.shape_channel_logo_bg),
+                                          contentDescription = null,
+                                          modifier = Modifier.size(32.dp),
+                                      )*/
                                     KamelImage(
                                         resource = loadImage(
                                             url = this@apply.logoDark,
@@ -123,13 +119,6 @@ internal fun MovieItemCell(
                                 }
                             }
                         }
-
-                        Box(
-                            modifier = Modifier.fillMaxSize(),
-                            contentAlignment = Alignment.TopEnd,
-                        ) {
-                            RenderLiveEvent(viewable.defaultPlayable)
-                        }
                     }
 
                     else -> {}
@@ -142,7 +131,7 @@ internal fun MovieItemCell(
                 viewable.apply {
                     if (imageType == Constants.SixteenNineCollection) {
                         Text(
-                            text = viewable.getTitle(context),
+                            text = viewable.getTitle(),
                             modifier = Modifier
                                 .align(Alignment.Start)
                                 .padding(8.dp, 4.dp, 8.dp, 0.dp),
@@ -175,7 +164,7 @@ private fun LinearProgressBar(progress: Float) {
             modifier = Modifier
                 .fillMaxWidth(),
             color = Color.LightGray,
-            trackColor = themePrimary,
+            backgroundColor = themePrimary,
         )
     }
 }
