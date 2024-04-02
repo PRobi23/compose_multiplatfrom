@@ -1,23 +1,12 @@
 package presentation.components
 
 import androidx.compose.animation.animateContentSize
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxHeight
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.*
 import androidx.compose.material.MaterialTheme.typography
 import androidx.compose.material.Tab
 import androidx.compose.material.TabRow
 import androidx.compose.material.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableIntStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
+import androidx.compose.runtime.*
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.focusRestorer
@@ -35,7 +24,6 @@ import presentation.util.MagineBodyText
 import presentation.util.themePrimary
 import presentation.util.themePrimaryTint0
 import presentation.viewModels.tv.ViewableViewState
-import kotlin.time.Duration
 
 @OptIn(
     ExperimentalComposeUiApi::class, ExperimentalResourceApi::class,

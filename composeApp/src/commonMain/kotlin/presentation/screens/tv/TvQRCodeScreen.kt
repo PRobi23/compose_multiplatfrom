@@ -1,24 +1,14 @@
 package presentation.screens.tv
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.aspectRatio
-import androidx.compose.foundation.layout.fillMaxHeight
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
-import androidx.compose.material.*
+import androidx.compose.foundation.layout.*
+import androidx.compose.material.Button
+import androidx.compose.material.CircularProgressIndicator
+import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.TextStyle
@@ -30,24 +20,10 @@ import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.navigator.LocalNavigator
 import cafe.adriel.voyager.navigator.currentOrThrow
 import core.UiEvent
-import domain.model.QrCodeResponse
 import io.github.alexzhirkevich.qrose.rememberQrCodePainter
 import kotlinx.coroutines.delay
-import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
-import multiplatform.composeapp.generated.resources.Res
-import multiplatform.composeapp.generated.resources.ic_logo
-import multiplatform.composeapp.generated.resources.login
-import multiplatform.composeapp.generated.resources.qrStepOne
-import multiplatform.composeapp.generated.resources.qrStepOneDesc
-import multiplatform.composeapp.generated.resources.qrStepThree
-import multiplatform.composeapp.generated.resources.qrStepThreeDesc
-import multiplatform.composeapp.generated.resources.qrStepTwo
-import multiplatform.composeapp.generated.resources.qrStepTwoDesc
-import multiplatform.composeapp.generated.resources.qrSteps
-import multiplatform.composeapp.generated.resources.qrTitle
-import multiplatform.composeapp.generated.resources.qrToRegisterActivity
-import multiplatform.composeapp.generated.resources.qrToSignInActivity
+import multiplatform.composeapp.generated.resources.*
 import org.jetbrains.compose.resources.ExperimentalResourceApi
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
@@ -56,8 +32,8 @@ import presentation.screens.common.SuccessfulLoginScreen
 import presentation.viewModels.tv.QRCodeScreenViewModel
 
 
-class TvQRCodeScreen: Screen {
-    
+class TvQRCodeScreen : Screen {
+
     @OptIn(ExperimentalResourceApi::class)
     @Composable
     override fun Content() {
@@ -96,7 +72,7 @@ class TvQRCodeScreen: Screen {
             qrCodeScreenViewModel.uiEvents.collect { event ->
                 when (event) {
                     is UiEvent.Success -> {
-                        navigator.push(SuccessfulLoginScreen(isTv = true))
+                        navigator.push(TvDetailsScreen())
                     }
 
                     is UiEvent.ShowMessageToTheUser -> {}
@@ -227,7 +203,7 @@ class TvQRCodeScreen: Screen {
                     Spacer(modifier = Modifier.height(16.dp))
 
                     Row(modifier = Modifier.padding(top = 16.dp)) {
-                        Button(onClick = {  navigator.push(TvRegisterScreen()) }) {
+                        Button(onClick = { navigator.push(TvRegisterScreen()) }) {
                             Text(text = stringResource(Res.string.qrToSignInActivity))
                         }
 

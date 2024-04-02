@@ -2,32 +2,35 @@ package presentation.screens.tv
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.focusable
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.paint
 import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.graphics.TileMode
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import cafe.adriel.voyager.core.screen.Screen
 import core.UiEvent
+import io.kamel.image.KamelImage
 import multiplatform.composeapp.generated.resources.Res
 import multiplatform.composeapp.generated.resources.qrToRegisterActivity
 import org.jetbrains.compose.resources.ExperimentalResourceApi
 import org.koin.compose.koinInject
 import presentation.components.ExtendedMovieDetails
 import presentation.components.TabItemsContent
+import presentation.helpers.compose.loadImage
+import presentation.helpers.extensions.backgroundImage
 import presentation.util.primary
 import presentation.viewModels.tv.TvViewableViewModel
 import presentation.viewModels.tv.ViewableViewState
+import utils.getScreenSizeInfo
 
 class TvDetailsScreen : Screen {
 
@@ -37,24 +40,26 @@ class TvDetailsScreen : Screen {
         val tvDetailsScreenViewModel: TvViewableViewModel = koinInject()
 
         val uiState = tvDetailsScreenViewModel.state.collectAsState().value
-        //viewableViewModel.initSchedule(ChannelScheduleView.DAYS_IN_SCHEDULE)
-        var previewSize: List<String> = emptyList()
-
         val snackbarHostState = remember { SnackbarHostState() }
+
+        LaunchedEffect(Unit) {
+            tvDetailsScreenViewModel.fetchViewable()
+        }
 
         when (uiState) {
             is ViewableViewState.Ready -> {
-                /*
-                SharedPreferencesHelper.getPreviewSize(context)?.let {
-                    previewSize = listOf(it.max(), it.min())
-                }
-                */
-
+                val screenSize = getScreenSizeInfo()
                 var collapseMovieDetails by remember { mutableStateOf(false) }
+                val (_, imagePainter) = loadImage(
+                    url = uiState.viewable?.backgroundImage,
+                    crop = false,
+                    widthPx = screenSize.wPX,
+                    heightPx = screenSize.hPX
+                )
 
                 LaunchedEffect(key1 = collapseMovieDetails) {
                     if (collapseMovieDetails != uiState.collapseMovieDetails) {
-                        // viewableViewModel.updateSecondElementHasFocus(collapseMovieDetails)
+                        tvDetailsScreenViewModel.updateSecondElementHasFocus(collapseMovieDetails)
                     }
                 }
 
@@ -76,6 +81,13 @@ class TvDetailsScreen : Screen {
                     snackbarHost = { SnackbarHost(snackbarHostState) },
                 ) { innerPadding ->
                     Surface(shape = RectangleShape) {
+                        KamelImage(
+                            resource = imagePainter,
+                            contentDescription = "Description",
+                            modifier = Modifier
+                                .size(height = screenSize.hDP, width = screenSize.wDP),
+                            contentScale = ContentScale.FillBounds
+                        )
                         Column(
                             verticalArrangement = Arrangement.spacedBy(if (collapseMovieDetails) 16.dp else 32.dp),
                             modifier = Modifier

@@ -20,6 +20,7 @@ import org.koin.dsl.module
 import presentation.viewModels.mobile.MobileFillInEmailScreenViewModel
 import presentation.viewModels.tv.QRCodeScreenViewModel
 import presentation.viewModels.tv.TvLoginScreenViewModel
+import presentation.viewModels.tv.TvViewableViewModel
 
 
 val appModule = module {
@@ -74,5 +75,9 @@ val appModule = module {
             fetchQRCodeUseCase = get(),
             verifyUserIdCodeUseCase = get()
         )
+    }
+
+    viewModelDefinition {
+        TvViewableViewModel()
     }
 }

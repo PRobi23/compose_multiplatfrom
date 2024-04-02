@@ -15,10 +15,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import domain.model.viewableInterface.ThirdPartyOfferSubType
 import domain.model.viewableInterface.ViewableInterface
 import multiplatform.composeapp.generated.resources.*
-import multiplatform.composeapp.generated.resources.ic_watchlist_check
 import org.jetbrains.compose.resources.ExperimentalResourceApi
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
@@ -204,39 +202,39 @@ private fun ButtonSection(
                 onClick = {}
             )
         }
-    }
-    if (viewable is ViewableInterface.Channel) {
-        IconTextButton(
-            modifier = Modifier
-                .padding(end = 12.dp, top = 27.dp),
-            text = stringResource(Res.string.tv_viewable_view_action_schedule),
-            onClick = {}
-        )
-    }
+        if (viewable is ViewableInterface.Channel) {
+            IconTextButton(
+                modifier = Modifier
+                    .padding(end = 12.dp, top = 27.dp),
+                text = stringResource(Res.string.tv_viewable_view_action_schedule),
+                onClick = {}
+            )
+        }
 
-    if (isTrailerButtonVisible) {
+        if (isTrailerButtonVisible) {
+            CircularIconButton(
+                modifier = Modifier
+                    .padding(end = 12.dp, top = 32.dp),
+                icon = painterResource(Res.drawable.ic_trailer),
+                onClick = {}
+            )
+        }
+
         CircularIconButton(
             modifier = Modifier
                 .padding(end = 12.dp, top = 32.dp),
-            icon = painterResource(Res.drawable.ic_trailer),
-            onClick = {}
+            onClick = {
+                viewable.checkWatchList()?.let {
+                    if (it) {
+                        iconState.value = Res.drawable.ic_watchlist_add
+                    } else {
+                        iconState.value = Res.drawable.ic_watchlist_check
+                    }
+                }
+            },
+            icon = painterResource(iconState.value),
         )
     }
-
-    CircularIconButton(
-        modifier = Modifier
-            .padding(end = 12.dp, top = 32.dp),
-        onClick = {
-            viewable.checkWatchList()?.let {
-                if (it) {
-                    iconState.value = Res.drawable.ic_watchlist_add
-                } else {
-                    iconState.value = Res.drawable.ic_watchlist_check
-                }
-            }
-        },
-        icon = painterResource(iconState.value),
-    )
 }
 
 @OptIn(ExperimentalResourceApi::class)
