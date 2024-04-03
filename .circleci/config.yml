@@ -12,6 +12,12 @@ jobs:
       - android/restore-build-cache
       - android/restore-gradle-cache
       - run:
+          name: Install OpenJDK 17
+          command: |
+            sudo apt-get update && sudo apt-get install openjdk-17-jdk
+            sudo update-alternatives --set java /usr/lib/jvm/java-17-openjdk-amd64/bin/java
+            sudo update-alternatives --set javac /usr/lib/jvm/java-17-openjdk-amd64/bin/javac
+            java -version
           name: Run Android tests
           command: ./gradlew androidApp:testDebugUnitTest
       - android/save-gradle-cache
@@ -19,7 +25,7 @@ jobs:
 
   build-ios:
     macos:
-      xcode: 12.4.0
+      xcode: 15.2.0
     steps:
       - checkout
       - run:
