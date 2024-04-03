@@ -27,7 +27,8 @@ import presentation.components.ExtendedMovieDetails
 import presentation.components.TabItemsContent
 import presentation.helpers.compose.loadImage
 import presentation.helpers.extensions.backgroundImage
-import presentation.util.primary
+import presentation.util.themeBottomBarBackgroundColor
+import presentation.util.themePrimary
 import presentation.viewModels.tv.TvViewableViewModel
 import presentation.viewModels.tv.ViewableViewState
 import utils.getScreenSizeInfo
@@ -98,15 +99,15 @@ class TvDetailsScreen : Screen {
                                         createGradientBrush(
                                             isVertical = true,
                                             colors = listOf(
-                                                primary,
-                                                primary,
+                                                themeBottomBarBackgroundColor,
+                                                themeBottomBarBackgroundColor,
                                             ),
                                         )
                                     } else {
                                         createGradientBrush(
                                             isVertical = false,
                                             colors = listOf(
-                                                primary,
+                                                themeBottomBarBackgroundColor,
                                                 Color.Transparent,
                                             ),
                                         )
@@ -155,7 +156,7 @@ private fun Loading() {
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
-        CircularProgressIndicator(color = primary)
+        CircularProgressIndicator(color = themePrimary)
     }
 }
 

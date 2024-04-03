@@ -1,4 +1,4 @@
-package presentation.components
+package presentation.components.cells
 
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
@@ -21,7 +21,7 @@ import org.jetbrains.compose.resources.ExperimentalResourceApi
 import org.jetbrains.compose.resources.painterResource
 import presentation.helpers.compose.loadImage
 import presentation.util.MagineBodyText
-import presentation.util.md_theme_dark_primary
+import presentation.util.themePrimary
 import presentation.util.themePrimaryTint0
 
 @OptIn(ExperimentalResourceApi::class)
@@ -84,7 +84,7 @@ internal fun SeasonItemCell(
                                 BorderStroke(width = 0.dp, color = Color.Transparent)
                             }
                         }
-                        .background(color = if (skeletonImageShown) md_theme_dark_primary else Color.Transparent),
+                        .background(color = if (skeletonImageShown) themePrimary else Color.Transparent),
                     contentScale = ContentScale.Crop
                 )
                 // Play overlay, if has focus

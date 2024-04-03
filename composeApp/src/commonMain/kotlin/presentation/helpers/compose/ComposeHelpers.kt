@@ -48,15 +48,6 @@ fun loadImage(
         // Load default image as a fallback
         asyncPainterResource(data = DefaultImageResourceId)
     }
-    KamelImage(
-        resource = imagePainter,
-        contentDescription = null,
-        contentScale = if (crop) ContentScale.Crop else ContentScale.Fit,
-        modifier = Modifier,
-        onLoading = { },
-        onFailure = { }
-    )
-
 
     return imageUrl.isNotEmpty() to imagePainter
 }

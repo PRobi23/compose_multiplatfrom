@@ -1,4 +1,4 @@
-package presentation.components
+package presentation.components.cells
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
@@ -33,7 +33,6 @@ import presentation.util.MagineSmallText
 import presentation.util.themePrimary
 import presentation.util.themePrimaryTint0
 
-@OptIn(ExperimentalResourceApi::class)
 @Composable
 internal fun MovieItemCell(
     modifier: Modifier = Modifier,
@@ -88,41 +87,6 @@ internal fun MovieItemCell(
                         .border(border),
                     contentScale = ContentScale.None,
                 )
-                when (viewable) {
-                    is ViewableInterface.VideoViewable -> {
-                        viewable.apply {
-                            this.defaultPlayable?.channel?.apply {
-                                Box(
-                                    modifier = Modifier
-                                        .padding(10.dp)
-
-                                ) {
-
-                                    /*  Image(
-                                          painter = painterResource(Res.drawable.shape_channel_logo_bg),
-                                          contentDescription = null,
-                                          modifier = Modifier.size(32.dp),
-                                      )*/
-                                    KamelImage(
-                                        resource = loadImage(
-                                            url = this@apply.logoDark,
-                                            widthPx = with(LocalDensity.current) {
-                                                24.dp.toPx().toInt()
-                                            },
-                                            heightPx = with(LocalDensity.current) {
-                                                24.dp.toPx().toInt()
-                                            },
-                                        ).second,
-                                        contentDescription = "",
-                                        modifier = Modifier.align(Alignment.Center),
-                                    )
-                                }
-                            }
-                        }
-                    }
-
-                    else -> {}
-                }
             }
         }
 

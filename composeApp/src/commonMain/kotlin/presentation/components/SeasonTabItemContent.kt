@@ -20,6 +20,7 @@ import multiplatform.composeapp.generated.resources.Res
 import multiplatform.composeapp.generated.resources.details_page_season_row
 import org.jetbrains.compose.resources.ExperimentalResourceApi
 import org.jetbrains.compose.resources.stringResource
+import presentation.components.cells.SeasonItemCell
 import presentation.util.themePrimaryTint0
 
 @OptIn(ExperimentalComposeUiApi::class, ExperimentalResourceApi::class)

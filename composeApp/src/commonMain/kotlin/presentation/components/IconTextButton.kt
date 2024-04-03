@@ -18,8 +18,6 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import presentation.util.MagineBodyText
-import presentation.util.primary
-import presentation.util.themePrimaryTint0
 
 @Composable
 internal fun IconTextButton(
@@ -28,11 +26,6 @@ internal fun IconTextButton(
     icon: Painter? = null,
     onClick: () -> Unit,
 ) {
-
-    val backgroundColor = primary
-    val primaryTintColor = themePrimaryTint0
-
-
     if (text.count() > 8) {
         Button(
             onClick = onClick,
