@@ -5,8 +5,6 @@ orbs:
 
 jobs:
   build-android:
-    executor: android/android
-
     steps:
       - checkout
       - android/restore-build-cache
