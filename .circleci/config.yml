@@ -22,14 +22,8 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Setup Corretto JDK 17
-          command: |
-            brew install corretto17
-            echo 'export JAVA_HOME=$(/usr/libexec/java_home -v17)' >> $BASH_ENV
-            source $BASH_ENV
-      - run:
-          name: Build Multiplatform project
-          command: ./gradlew assemble
+         name: "Build iOS App"
+         uses: yukiarrr/ios-build-action@v1.9.1
 
 workflows:
   build-all:
