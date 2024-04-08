@@ -15,7 +15,7 @@ jobs:
       - android/restore-gradle-cache
       - run:
           name: Install OpenJDK 17
-          command: |
+          command:
             - android/save-gradle-cache
             - android/save-build-cache
 
