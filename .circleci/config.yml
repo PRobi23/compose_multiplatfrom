@@ -13,7 +13,7 @@ jobs:
       - checkout
       - run: ./gradlew assemble
       - store_artifacts:
-          path: app/build/outputs/
+          path: composeApp/build/outputs/
           destination: build-outputs
 
   build-ios:
