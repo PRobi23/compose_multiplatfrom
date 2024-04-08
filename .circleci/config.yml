@@ -4,14 +4,14 @@ orbs:
   android: circleci/android@2.5.0
 
 jobs:
-  build-android:
+  build-apps:
     executor:
       name: android/android-machine
       resource-class: large
       tag: default
     steps:
       - checkout
-      - run: ./gradlew build composeApp:android
+      - run: ./gradlew assemble
 
   build-ios:
     macos:
