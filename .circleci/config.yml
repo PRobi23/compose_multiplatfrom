@@ -11,7 +11,7 @@ jobs:
       tag: default
     steps:
       - checkout
-      - android/restore-build-cache
+      - run: ./gradlew androidDependencies
       - android/restore-gradle-cache
       - run:
           name: Install OpenJDK 17
