@@ -21,7 +21,10 @@ jobs:
       xcode: "15.2.0"
     steps:
       - checkout
-      - run: yukiarrr/ios-build-action@v1.9.1
+      - run: ./gradlew assemble
+      - store_artifacts:
+          path: composeApp/build/outputs/
+          destination: build-outputs
 workflows:
   build-all:
     jobs:
