@@ -18,25 +18,7 @@ jobs:
       xcode: 15.2.0
     steps:
       - checkout
-      - run:
-          name: Allow proper XCode dependency resolution
-          command: |
-            sudo defaults write com.apple.dt.Xcode IDEPackageSupportUseBuiltinSCM YES
-            rm ~/.ssh/id_rsa || true
-            for ip in $(dig @8.8.8.8 bitbucket.org +short); do ssh-keyscan bitbucket.org,$ip; ssh-keyscan $ip; done 2>/dev/null >> ~/.ssh/known_hosts || true
-            for ip in $(dig @8.8.8.8 github.com +short); do ssh-keyscan github.com,$ip; ssh-keyscan $ip; done 2>/dev/null >> ~/.ssh/known_hosts || true
-      - run:
-          name: Install Gem dependencies
-          command: |
-           cd iosApp
-           pwd
-           ls -la
-           bundle install
-      - run:
-          name: Fastlane Tests
-          command: |
-            cd iosApp
-            fastlane scan
+      - run: ./gradlew build composeApp:ios
 
 workflows:
   build-all:
