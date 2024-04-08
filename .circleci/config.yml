@@ -21,10 +21,7 @@ jobs:
       xcode: "15.2.0"
     steps:
       - checkout
-      - run:
-         name: "Build iOS App"
-         uses: yukiarrr/ios-build-action@v1.9.1
-
+      - run: yukiarrr/ios-build-action@v1.9.1
 workflows:
   build-all:
     jobs:
