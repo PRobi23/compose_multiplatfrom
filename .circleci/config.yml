@@ -11,13 +11,7 @@ jobs:
       tag: default
     steps:
       - checkout
-      - run: ./gradlew androidDependencies
-      - android/restore-gradle-cache
-      - run:
-          name: Install OpenJDK 17
-          command: |
-            - android/save-gradle-cache
-            - android/save-build-cache
+      - run: ./gradlew build composeApp:android
 
   build-ios:
     macos:
