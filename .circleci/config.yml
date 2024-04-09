@@ -21,9 +21,9 @@ jobs:
       xcode: "15.2.0"
     steps:
       - checkout
-      - run: ./gradlew assemble
+      - run: ./gradlew composeApp:iosArm64Binaries
       - store_artifacts:
-          path: composeApp/build/outputs/
+          path: composeApp/build/bin/iosArm64
           destination: build-outputs
 workflows:
   build-all:
