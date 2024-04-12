@@ -21,7 +21,11 @@ jobs:
       xcode: "15.2.0"
     steps:
       - checkout
-      - run: bundle install
+      - run:
+          name: Install Gem dependencies
+          command: |
+            cd iosApp
+            bundle install
       - run: ./gradlew composeApp:iosArm64Binaries
       - store_artifacts:
           path: composeApp/build/bin/iosArm64
