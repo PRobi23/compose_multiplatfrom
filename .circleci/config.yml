@@ -21,6 +21,7 @@ jobs:
       xcode: "15.2.0"
     steps:
       - checkout
+      - run: bundle install
       - run: ./gradlew composeApp:iosArm64Binaries
       - store_artifacts:
           path: composeApp/build/bin/iosArm64
