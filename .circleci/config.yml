@@ -22,7 +22,7 @@ jobs:
     steps:
       - checkout
       - run: xcodebuild -version
-      - run: ./gradlew composeApp:iosArm64Binaries
+      - run: ./gradlew build --info -Pbuild_type=IOS
       - store_artifacts:
           path: composeApp/build/bin/iosArm64
           destination: build-outputs
