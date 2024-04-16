@@ -75,8 +75,16 @@
 				7555FF8C242A565B00829871 /* Info.plist */,
 				2152FB032600AC8F00CF470E /* iOSApp.swift */,
 				058557D7273AAEEB004C7B11 /* Preview Content */,
+				7E889E9F948E2A02281E1ABF /* fastlane */,
 			);
 			path = iosApp;
+			sourceTree = "<group>";
+		};
+		7E889E9F948E2A02281E1ABF /* fastlane */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = fastlane;
 			sourceTree = "<group>";
 		};
 		AB1DB47929225F7C00F7AF9C /* Configuration */ = {
