@@ -22,6 +22,7 @@ jobs:
     steps:
       - checkout
       - run: xcodebuild -version
+      - run: cd iosApp/g
       - run: gem install fastlane
       - run: fastlane init
       - run: fastlane build
