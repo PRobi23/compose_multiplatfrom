@@ -23,6 +23,7 @@ jobs:
       - checkout
       - run: xcodebuild -version
       - run: gem install fastlane
+      - run: fastlane init
       - run: fastlane build
       - store_artifacts:
           path: composeApp/build/bin/iosArm64
