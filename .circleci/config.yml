@@ -22,7 +22,7 @@ jobs:
     steps:
       - checkout
       - run: xcodebuild -version
-      - run: sudo xcode-select -switch /Applications/Xcode_11.app
+      - run: sudo xcode-select -switch /Applications/Xcode_15.app
       - run: xcodebuild -version
       - run: xcrun simctl list
       - run: ./gradlew iosX64Test
