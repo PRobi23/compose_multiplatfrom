@@ -1,0 +1,37 @@
+version: 2.1
+
+orbs:
+  android: circleci/android@2.5.0
+
+jobs:
+  build-apps:
+    executor:
+      name: android/android-machine
+      resource-class: large
+      tag: default
+    steps:
+      - checkout
+      - run: ./gradlew assemble
+      - store_artifacts:
+          path: composeApp/build/outputs/
+          destination: build-outputs
+
+  build-ios:
+    macos:
+      xcode: "15.2.0"
+    steps:
+      - checkout
+      - run: xcodebuild -version
+      - run: fastlane init
+      - run: cd iosApp/
+      - run: gem install fastlane
+      - run: fastlane init
+      - run: fastlane ios custom_lane
+      - store_artifacts:
+          path: composeApp/build/bin/iosArm64
+          destination: build-outputs
+workflows:
+  build-all:
+    jobs:
+      - build-apps
+      - build-ios
