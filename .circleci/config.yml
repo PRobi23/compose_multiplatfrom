@@ -22,10 +22,11 @@ jobs:
     steps:
       - checkout
       - run: xcodebuild -version
+      - run: fastlane init
       - run: cd iosApp/
       - run: gem install fastlane
       - run: fastlane init
-      - run: fastlane build
+      - run: fastlane ios custom_lane
       - store_artifacts:
           path: composeApp/build/bin/iosArm64
           destination: build-outputs
