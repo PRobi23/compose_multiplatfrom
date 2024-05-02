@@ -11,6 +11,10 @@
 		058557D9273AAEEB004C7B11 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 058557D8273AAEEB004C7B11 /* Preview Assets.xcassets */; };
 		2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2152FB032600AC8F00CF470E /* iOSApp.swift */; };
 		7555FF83242A565900829871 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7555FF82242A565900829871 /* ContentView.swift */; };
+		CC59F2002BE39EC50044503F /* iosAppTvApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC59F1FF2BE39EC50044503F /* iosAppTvApp.swift */; };
+		CC59F2022BE39EC50044503F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC59F2012BE39EC50044503F /* ContentView.swift */; };
+		CC59F2042BE39EC60044503F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CC59F2032BE39EC60044503F /* Assets.xcassets */; };
+		CC59F2072BE39EC60044503F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CC59F2062BE39EC60044503F /* Preview Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -21,10 +25,22 @@
 		7555FF82242A565900829871 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		7555FF8C242A565B00829871 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AB3632DC29227652001CCB65 /* Config.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
+		CC59F1FD2BE39EC50044503F /* iosAppTv.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iosAppTv.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		CC59F1FF2BE39EC50044503F /* iosAppTvApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iosAppTvApp.swift; sourceTree = "<group>"; };
+		CC59F2012BE39EC50044503F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		CC59F2032BE39EC60044503F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		CC59F2062BE39EC60044503F /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		B92378962B6B1156000C7307 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CC59F1FA2BE39EC50044503F /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -54,6 +70,7 @@
 			children = (
 				AB1DB47929225F7C00F7AF9C /* Configuration */,
 				7555FF7D242A565900829871 /* iosApp */,
+				CC59F1FE2BE39EC50044503F /* iosAppTv */,
 				7555FF7C242A565900829871 /* Products */,
 				42799AB246E5F90AF97AA0EF /* Frameworks */,
 			);
@@ -63,6 +80,7 @@
 			isa = PBXGroup;
 			children = (
 				7555FF7B242A565900829871 /* Multiplatform.app */,
+				CC59F1FD2BE39EC50044503F /* iosAppTv.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -95,6 +113,25 @@
 			path = Configuration;
 			sourceTree = "<group>";
 		};
+		CC59F1FE2BE39EC50044503F /* iosAppTv */ = {
+			isa = PBXGroup;
+			children = (
+				CC59F1FF2BE39EC50044503F /* iosAppTvApp.swift */,
+				CC59F2012BE39EC50044503F /* ContentView.swift */,
+				CC59F2032BE39EC60044503F /* Assets.xcassets */,
+				CC59F2052BE39EC60044503F /* Preview Content */,
+			);
+			path = iosAppTv;
+			sourceTree = "<group>";
+		};
+		CC59F2052BE39EC60044503F /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				CC59F2062BE39EC60044503F /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -118,18 +155,38 @@
 			productReference = 7555FF7B242A565900829871 /* Multiplatform.app */;
 			productType = "com.apple.product-type.application";
 		};
+		CC59F1FC2BE39EC50044503F /* iosAppTv */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CC59F20A2BE39EC60044503F /* Build configuration list for PBXNativeTarget "iosAppTv" */;
+			buildPhases = (
+				CC59F1F92BE39EC50044503F /* Sources */,
+				CC59F1FA2BE39EC50044503F /* Frameworks */,
+				CC59F1FB2BE39EC50044503F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = iosAppTv;
+			productName = iosAppTv;
+			productReference = CC59F1FD2BE39EC50044503F /* iosAppTv.app */;
+			productType = "com.apple.product-type.application";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		7555FF73242A565900829871 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1130;
+				LastSwiftUpdateCheck = 1530;
 				LastUpgradeCheck = 1130;
 				ORGANIZATIONNAME = orgName;
 				TargetAttributes = {
 					7555FF7A242A565900829871 = {
 						CreatedOnToolsVersion = 11.3.1;
+					};
+					CC59F1FC2BE39EC50044503F = {
+						CreatedOnToolsVersion = 15.3;
 					};
 				};
 			};
@@ -149,6 +206,7 @@
 			projectRoot = "";
 			targets = (
 				7555FF7A242A565900829871 /* iosApp */,
+				CC59F1FC2BE39EC50044503F /* iosAppTv */,
 			);
 		};
 /* End PBXProject section */
@@ -160,6 +218,15 @@
 			files = (
 				058557D9273AAEEB004C7B11 /* Preview Assets.xcassets in Resources */,
 				058557BB273AAA24004C7B11 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CC59F1FB2BE39EC50044503F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CC59F2072BE39EC60044503F /* Preview Assets.xcassets in Resources */,
+				CC59F2042BE39EC60044503F /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -193,6 +260,15 @@
 			files = (
 				2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */,
 				7555FF83242A565900829871 /* ContentView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CC59F1F92BE39EC50044503F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CC59F2022BE39EC50044503F /* ContentView.swift in Sources */,
+				CC59F2002BE39EC50044503F /* iosAppTvApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -379,6 +455,74 @@
 			};
 			name = Release;
 		};
+		CC59F2082BE39EC60044503F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_ASSET_PATHS = "\"iosAppTv/Preview Content\"";
+				DEVELOPMENT_TEAM = J9E7ZX5934;
+				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UIUserInterfaceStyle = Automatic;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.magine.multiplatform.magine.Multiplatform.iosAppTv;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 17.4;
+			};
+			name = Debug;
+		};
+		CC59F2092BE39EC60044503F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"iosAppTv/Preview Content\"";
+				DEVELOPMENT_TEAM = J9E7ZX5934;
+				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UIUserInterfaceStyle = Automatic;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.magine.multiplatform.magine.Multiplatform.iosAppTv;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 17.4;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -396,6 +540,15 @@
 			buildConfigurations = (
 				7555FFA6242A565B00829871 /* Debug */,
 				7555FFA7242A565B00829871 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CC59F20A2BE39EC60044503F /* Build configuration list for PBXNativeTarget "iosAppTv" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CC59F2082BE39EC60044503F /* Debug */,
+				CC59F2092BE39EC60044503F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
